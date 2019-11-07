@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    
     return view('signin');
 })->middleware(['guest']);
 
@@ -25,7 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/logout', function () {
     \Auth::logout();
-    return redirect('/signin');
+    return response()->json(['status' => 'success', 'message' => 'Logged out successfully', 'data' => '']);  
 })->middleware(['auth']);
 
 Route::get('/users', 'UserController@index')->middleware(['auth']);

@@ -17,10 +17,12 @@ export default class Dashboard extends Component {
 		super(props);
 		this.state = {
 			users : [],
-			usersLoaded : false
+			usersLoaded : false,
+			isLoggedOut : false
 		}
 
 		this.getUserList = this.getUserList.bind(this);
+		this.logoutHandler = this.logoutHandler.bind(this);
 	}
 
 	getUserList() {
@@ -35,15 +37,29 @@ export default class Dashboard extends Component {
 		 });
 	}
 
+	logoutHandler() {
+		axiosGet(`${baseUrl}/logout`)
+		.then(({status, message, data = ''}) => {			
+			if(status == 'success'){
+				this.setState({ isLoggedOut: true});
+			}else{
+				toastr.error(message);
+			}
+		 });
+	}
+
 	componentDidMount() {
 	    this.getUserList();
 	  }
 
 
 	render() {
+		if(this.state.isLoggedOut)
+			return <Redirect to="/" />
+
 		return (
 			<div className="mt-5">
-				<Link to="/logout">Logout</Link>
+				<a href="javascript:void(0)" onClick={this.logoutHandler}>Logout</a>
 				<h2>Dashboard</h2>
 				<Table users={this.state.users} loaded={this.state.usersLoaded}/>
 			</div>
