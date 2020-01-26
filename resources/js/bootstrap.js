@@ -12,9 +12,23 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 require('bootstrap');
 require('jquery');
-require('react');
-require('react-dom');
+/* require('react');
+require('react-dom'); */
 window.toastr = require('toastr');
+import './react/index.js';
+//require('./react/index.js');
+/* import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './react/component/App';
+import {
+    BrowserRouter as Router
+  } from "react-router-dom";
+
+ReactDOM.render(
+    <Router>
+        <App />
+    </Router>, 
+    document.getElementById('app')); */
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

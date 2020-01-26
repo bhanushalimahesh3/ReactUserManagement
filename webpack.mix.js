@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.react('resources/js/app.js', 'public/js')
     .styles('node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/css/bootstrap.css')
-    .react('resources/js/react/index.js', 'public/js/index.js')
+   // .react('resources/js/react/index.js', 'public/js/index.js')
     .sourceMaps()
     .version();

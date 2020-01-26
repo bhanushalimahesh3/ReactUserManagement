@@ -18,7 +18,8 @@ export default class Dashboard extends Component {
 		this.state = {
 			users : [],
 			usersLoaded : false,
-			isLoggedOut : false
+			isLoggedOut : false,
+			noData : false
 		}
 
 		this.getUserList = this.getUserList.bind(this);
@@ -30,8 +31,9 @@ export default class Dashboard extends Component {
 		axiosGet(`${baseUrl}/users`)
 		.then(({status, message, data = ''}) => {			
 			if(status == 'success'){
-				this.setState({ users: data, usersLoaded: true});
+				this.setState({ users: data, usersLoaded: true, noData: false});
 			}else{
+				this.setState({ users: data, usersLoaded: true, noData: true});
 				toastr.error(message);
 			}
 		 });
@@ -59,9 +61,10 @@ export default class Dashboard extends Component {
 
 		return (
 			<div className="mt-5">
-				<a href="javascript:void(0)" onClick={this.logoutHandler}>Logout</a>
+				
+				<button type="button" onClick={this.logoutHandler}>Logout</button>
 				<h2>Dashboard</h2>
-				<Table users={this.state.users} loaded={this.state.usersLoaded}/>
+				<Table users={this.state.users} loaded={this.state.usersLoaded} noData = {this.state.noData}/>
 			</div>
 			
 			);
@@ -69,10 +72,11 @@ export default class Dashboard extends Component {
 
 }
 
+
 function Table(props) {
-	const rows = (props.loaded) ? props.users.map(function(obj, index) {
+	const rows = (props.loaded) ? ((props.noData) ? (<tr><td>No data found</td></tr>) : (props.users.map(function(obj, index) {
 		return (<TableRow rowData={obj} key={obj.id}/>)
-	}): (<tr><td>Loading...</td></tr>);
+	}))): (<tr><td>Loading...</td></tr>);
 
 	return (
 		<table className="table">

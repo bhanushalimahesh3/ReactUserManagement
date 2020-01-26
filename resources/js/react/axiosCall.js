@@ -24,7 +24,7 @@ export function axiosDelete(url) {
 			      .catch(handleCatch);
 }
 
-export const baseUrl = 'http://rw.io';
+export const baseUrl = document.querySelector("meta[name='baseurl']").getAttribute('content');
 
 const handleThen =  function (response) {
 	return response.data;
@@ -32,4 +32,5 @@ const handleThen =  function (response) {
 
 const handleCatch = function (error) {
 	console.log(error);
+	// add all status code here
 }

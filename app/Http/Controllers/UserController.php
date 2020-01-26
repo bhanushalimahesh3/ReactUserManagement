@@ -13,7 +13,7 @@ class UserController extends Controller
                             ->get();
 
        if($users->isEmpty())
-            return response()->json(['status' => 'error', 'message' => 'Something looks wrong!!']);
+            return response()->json(['status' => 'error', 'message' => 'No users found']);
             
 	    return response()->json(['status' => 'success', 'message' => 'User fetched successfully', 'data' => $users]);            
         
