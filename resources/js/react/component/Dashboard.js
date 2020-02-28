@@ -62,7 +62,10 @@ export default class Dashboard extends Component {
 		return (
 			<div className="mt-5">
 				
-				<button type="button" onClick={this.logoutHandler}>Logout</button>
+				<button type="button" className="btn btn-primary" onClick={this.myProfile}>My Profile</button>
+
+				<button type="button" className="btn btn-danger ml-2" onClick={this.logoutHandler}>Logout</button>
+				
 				<h2>Dashboard</h2>
 				<Table users={this.state.users} loaded={this.state.usersLoaded} noData = {this.state.noData}/>
 			</div>

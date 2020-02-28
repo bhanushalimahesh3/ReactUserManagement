@@ -11,30 +11,40 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     
     return view('signin');
-})->middleware(['guest']);
+})->middleware(['guest']);*/
 
-Route::get('/signin', function () {
-    return view('signin');
-})->name('login')->middleware(['guest']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth']);
-
-Route::get('/logout', function () {
-    \Auth::logout();
-    return response()->json(['status' => 'success', 'message' => 'Logged out successfully', 'data' => '']);  
-})->middleware(['auth']);
-
-Route::get('/users', 'UserController@index')->middleware(['auth']);
-
-Route::get('/signup', function () {
-	return view('signup');
+Route::middleware('guest')->group(function(){
+    Route::view('/', 'signin');
+    Route::view('/signin', 'signin')->name('login');
+    Route::view('signup', 'signup');
+    Route::post('/signup', 'SignupController@store');
+    Route::post('/signin', 'SignupController@authenticate');
 });
 
-Route::post('/signup', 'SignupController@store');
 
-Route::post('/signin', 'SignupController@authenticate');
+
+
+Route::middleware('auth')->group(function(){
+    Route::view('dashboard', 'dashboard');  
+    Route::get('/logout', function () {
+        \Auth::logout();
+        return response()->json(['status' => 'success', 'message' => 'Logged out successfully', 'data' => '']);  
+    });
+    Route::get('/users', 'UserController@index');
+});
+
+
+
+/* Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth']); */
+
+/* Route::get('/logout', function () {
+    \Auth::logout();
+    return response()->json(['status' => 'success', 'message' => 'Logged out successfully', 'data' => '']);  
+})->middleware(['auth']); */
+
+//Route::get('/users', 'UserController@index')->middleware(['auth']);
