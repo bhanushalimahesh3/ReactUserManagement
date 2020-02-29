@@ -10,6 +10,7 @@ import {
   } from "react-router-dom";
 
 import './../../../../node_modules/toastr/build/toastr.css';
+import AuthHandler from './AuthHandler';
 
 export default class Dashboard extends Component {
 
@@ -29,8 +30,12 @@ export default class Dashboard extends Component {
 	getUserList() {
 
 		axiosGet(`${baseUrl}/users`)
-		.then(({status, message, data = ''}) => {			
-			if(status == 'success'){
+		.then(({status, message, data, statusCode}) => {
+			const isGuest = AuthHandler(statusCode);
+			if(isGuest)
+				this.setState({ isLoggedOut: true});
+					
+			if(status === 'success'){
 				this.setState({ users: data, usersLoaded: true, noData: false});
 			}else{
 				this.setState({ users: data, usersLoaded: true, noData: true});

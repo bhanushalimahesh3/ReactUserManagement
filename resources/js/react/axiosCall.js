@@ -31,6 +31,7 @@ const handleThen =  function (response) {
 }
 
 const handleCatch = function (error) {
-	console.log(error);
+	const {data:{message}, status, statusText} = error.response;
+	return {status:'error', statusCode:status, message, data:''};
 	// add all status code here
 }
