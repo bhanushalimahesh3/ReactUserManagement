@@ -12,6 +12,7 @@ import {
 import './../../../../node_modules/toastr/build/toastr.css';
 import AuthHandler from './AuthHandler';
 import Swal from 'sweetalert2';
+import Header from './Header';
 
 export default class Dashboard extends Component {
 
@@ -95,27 +96,26 @@ export default class Dashboard extends Component {
 
 		return (
 			<div>
-				<div className="mt-5">
-					<div className="row">
-						<div className="col-12">
-							<Link to="/users/profile" className="btn btn-primary">My Profile</Link>
-							<Link to="/users/add/child" className="btn btn-primary ml-2">Add Child</Link>
-							<button type="button" className="btn btn-danger float-right" onClick={this.logoutHandler}>Logout</button>				
-						</div>
-					</div>	
-				</div>
-				<div className="mt-3">
-					<div className="row">
-						<div className="col-12">
-							<h2>Dashboard</h2>
-							<Table users={this.state.users} loaded={this.state.usersLoaded} noData = {this.state.noData} deleteHandler={this.deleteHandler}/>
-						</div>
-					</div>				
-				</div>
+				<Header logoutHandler = {this.logoutHandler}/>
+				<TableContainer users = {this.state.users} 
+								loaded = {this.state.usersLoaded} 
+								noData = {this.state.noData} 
+								deleteHandler = {this.deleteHandler} />
 			</div>
 			);
 	}
 
+}
+
+function TableContainer(props) {
+	return (<div className="mt-3">
+	<div className="row">
+		<div className="col-12">
+			<h2>Dashboard</h2>
+			<Table users={props.users} loaded={props.loaded} noData = {props.noData} deleteHandler={props.deleteHandler}/>
+		</div>
+	</div>				
+</div>);
 }
 
 

@@ -18,6 +18,8 @@ export default class UserProfile extends Component {
 				id:loadingMsg
 			}
 		}
+
+		this.handleFileUpload = this.handleFileUpload.bind(this);
 		
 	}
 
@@ -34,6 +36,11 @@ export default class UserProfile extends Component {
 		 });
 	}
 
+	handleFileUpload(e) {
+		console.log(e.target.files)
+		console.log(e.target.files[0])
+	}
+
 
 
 	componentDidMount() {
@@ -45,6 +52,17 @@ export default class UserProfile extends Component {
 		return (
 			<div className="mt-5">
 				<h2>Profile</h2>
+					<div className="form-group">
+						<img src="https://www.w3schools.com/bootstrap4/cinqueterre.jpg" loading="lazy" className="img-thumbnail" alt="Cinque Terre" width="304" height="236" />					 
+					</div>
+					<div className="form-group">
+					<label htmlFor="avatar">Select avatar:</label>
+						<input type="file" 
+								className="form-control" 
+								id="avatar"
+								onChange={this.handleFileUpload}
+								/>	
+					</div>
 					<div className="form-group">
 				      <label htmlFor="userName">Name:</label>
 				      <input type="text" 
