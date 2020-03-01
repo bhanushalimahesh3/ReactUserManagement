@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import Signup from './Signup';
 import Signin from './Signin';
 import Dashboard from './Dashboard';
+import UserProfile from './UserProfile';
+import AddChild from './AddChild';
 import {
   Switch,
   Route,
@@ -25,6 +27,11 @@ export default function App() {
         </Route>
         <Route exact path="/">
           <Signin />
+        </Route>
+        <Route exact path="/users/profile/:userId?" component={UserProfile}>
+        </Route>
+        <Route exact path="/users/child/add">
+          <AddChild />
         </Route>
       </Switch> 
 			);

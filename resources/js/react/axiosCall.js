@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export function axiosPost(url, data) {
+export function axiosPost(url, data = '') {
 	return axios.post(url, data)
 			      .then(handleThen)
 			      .catch(handleCatch);
 }
 
-export function axiosPut(url, data) {
+export function axiosPut(url, data = '') {
 	return axios.put(url, data)
 			      .then(handleThen)
 			      .catch(handleCatch);

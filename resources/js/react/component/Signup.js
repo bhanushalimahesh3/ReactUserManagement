@@ -9,6 +9,7 @@ import {
 	useParams
   } from "react-router-dom";
 import './../../../../node_modules/toastr/build/toastr.css';
+import validate from './Validation.js';
   
 
 export default class Signup extends Component {
@@ -29,6 +30,7 @@ export default class Signup extends Component {
 	}
 
 	handleSubmit(event) {
+		event.preventDefault();
 		const data = {email : this.state.email, name : this.state.name, 
 			    password : this.state.pwd, password_confirm : this.state.cpwd};
 
@@ -50,7 +52,7 @@ export default class Signup extends Component {
 	}
 
 
-	validate({name, email, pwd, cpwd}) {
+/* 	validate({name, email, pwd, cpwd}) {
 		let errorCount = 0;
 		const errors  =  {
 							name: {
@@ -125,17 +127,17 @@ export default class Signup extends Component {
 		}
 
 		return {errors, errorCount};
-	}
+	} */
 
 	render() {
 		if(this.state.showSignIn)
 			return <Redirect to='/signin' />
 
-		const {errors, errorCount} = this.validate(this.state);
+		const {errors, errorCount} = validate(this.state);
 		return (
 			<div className="mt-5">
 				<h2>Signup form</h2>
-				  <form>
+				  <form onSubmit={this.handleSubmit}>
 				    <div className="form-group">
 				      <label htmlFor="name">Name:</label>
 				      <input type="text" 
@@ -179,9 +181,8 @@ export default class Signup extends Component {
 					<div className="form-group">
 				      <Link to="/signin">Already have an account? Login</Link>
 				    </div>			    
-				    <button type="button" 
+				    <button type="submit" 
 				    		className="btn btn-primary" 
-				    		onClick={this.handleSubmit} 
 				    		disabled={(errorCount > 0)}>
 				    	Signup
 				    </button>

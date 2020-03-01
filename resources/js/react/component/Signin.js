@@ -27,6 +27,7 @@ export default class Signin extends Component {
 	}
 
 	handleSubmit(event) {
+		event.preventDefault();
 		const data = {email : this.state.email,  
 			    password : this.state.pwd};
 
@@ -97,7 +98,7 @@ export default class Signin extends Component {
 		return (
 			<div className="mt-5">
 				<h2>Signin form</h2>
-				  <form>
+				  <form onSubmit={this.handleSubmit}>
 				    <div className="form-group">
 				      <label htmlFor="email">Email:</label>
 				      <input type="email" 
@@ -122,9 +123,8 @@ export default class Signin extends Component {
 				      <Link to="/signup">Not have an account? Register now</Link>
 				    </div>
 
-				    <button type="button" 
+				    <button type="submit" 
 				    		className="btn btn-primary" 
-				    		onClick={this.handleSubmit} 
 				    		disabled={(errorCount > 0)}>
 				    	Login
 				    </button>

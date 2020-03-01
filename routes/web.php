@@ -25,5 +25,9 @@ Route::middleware('auth')->group(function(){
         \Auth::logout();
         return response()->json(['status' => 'success', 'message' => 'Logged out successfully', 'data' => '']);  
     });
+    Route::view('/users/profile/{id?}', 'auth');
+    Route::post('/users/profile/{id?}', 'UserController@getProfile')->where(['id' => '[0-9]+']);
+    Route::view('/users/add', 'auth');
     Route::get('/users', 'UserController@index');
+    Route::delete('/users/{id}', 'UserController@delete')->where(['id' => '[0-9]*']);
 });

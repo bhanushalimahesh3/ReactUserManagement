@@ -8,11 +8,13 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "cypress:open" : "cypress open"
+        "cypress:open": "cypress open"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.6.3",
         "axios": "^0.19",
+        "browser-sync": "^2.26.7",
+        "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.1",
         "cypress": "^4.0.1",
         "eslint": "^6.6.0",
@@ -31,6 +33,7 @@
         "react": "^16.10.2",
         "react-dom": "^16.10.2",
         "react-router-dom": "^5.1.2",
+        "sweetalert2": "^9.8.2",
         "toastr": "^2.1.4"
     }
 }
