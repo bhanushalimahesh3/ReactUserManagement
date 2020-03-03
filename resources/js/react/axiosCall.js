@@ -1,25 +1,25 @@
 import axios from 'axios';
 
-export function axiosPost(url, data = '') {
-	return axios.post(url, data)
+export function axiosPost(url, data = '', headers = '') {
+	return axios.post(url, data, {headers})
 			      .then(handleThen)
 			      .catch(handleCatch);
 }
 
-export function axiosPut(url, data = '') {
-	return axios.put(url, data)
+export function axiosPut(url, data = '', headers = '') {
+	return axios.put(url, data, {headers})
 			      .then(handleThen)
 			      .catch(handleCatch);
 }
 
-export function axiosGet(url) {
-	return axios.get(url)
+export function axiosGet(url, headers = '') {
+	return axios.get(url, {headers})
 			      .then(handleThen)
 			      .catch(handleCatch);
 }
 
-export function axiosDelete(url) {
-	return axios.delete(url)
+export function axiosDelete(url, headers = '') {
+	return axios.delete(url, {headers})
 			      .then(handleThen)
 			      .catch(handleCatch);
 }

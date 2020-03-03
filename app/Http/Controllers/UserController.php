@@ -44,4 +44,23 @@ class UserController extends Controller
         return response()->json(['status' => 'error', 'message' => 'No user found']);         
 
     }
+
+    public function update(Request $request)
+    {        
+        if(User::where('id', $request->id)->update(['name' => $request->name]))
+            return response()
+                ->json(['status' => 'success', 'message' => 'User updated successfully']); 
+        
+        return response()->json(['status' => 'error', 'message' => 'No user found']); 
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+        if(User::create($request->all()));
+            return response()
+                ->json(['status' => 'success', 'message' => 'User added successfully']); 
+        
+        return response()->json(['status' => 'error', 'message' => 'Unable to add user']);         
+    }
 }

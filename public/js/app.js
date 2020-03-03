@@ -77383,17 +77383,29 @@ __webpack_require__.r(__webpack_exports__);
 
 function axiosPost(url) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data).then(handleThen)["catch"](handleCatch);
+  var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, data, {
+    headers: headers
+  }).then(handleThen)["catch"](handleCatch);
 }
 function axiosPut(url) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(url, data).then(handleThen)["catch"](handleCatch);
+  var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(url, data, {
+    headers: headers
+  }).then(handleThen)["catch"](handleCatch);
 }
 function axiosGet(url) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(handleThen)["catch"](handleCatch);
+  var headers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url, {
+    headers: headers
+  }).then(handleThen)["catch"](handleCatch);
 }
 function axiosDelete(url) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](url).then(handleThen)["catch"](handleCatch);
+  var headers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](url, {
+    headers: headers
+  }).then(handleThen)["catch"](handleCatch);
 }
 var baseUrl = document.querySelector("meta[name='baseurl']").getAttribute('content');
 
@@ -77434,6 +77446,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -77442,9 +77456,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -77466,51 +77480,106 @@ function (_Component) {
     _classCallCheck(this, AddChild);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(AddChild).call(this, props));
-    var loadingMsg = 'Loading...';
     _this.state = {
-      profile: {
-        name: loadingMsg,
-        email: loadingMsg,
-        role: loadingMsg,
-        id: loadingMsg
-      }
+      name: '',
+      email: '',
+      role: 'child',
+      fileUpload: null
     };
+    _this.handleFileUpload = _this.handleFileUpload.bind(_assertThisInitialized(_this));
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(AddChild, [{
-    key: "getProfile",
-    value: function getProfile() {
+    key: "handleFileUpload",
+    value: function handleFileUpload(e) {
+      var target = e.target;
+      this.setState({
+        fileUpload: target.files[0]
+      });
+    }
+  }, {
+    key: "handleInputChange",
+    value: function handleInputChange(e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+      console.log({
+        name: name,
+        value: value
+      });
+      this.setState(function (prevState, props) {
+        return _defineProperty({}, name, value);
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
       var _this2 = this;
 
-      var id = this.props.match.params.userId ? "/".concat(this.props.match.params.userId) : '';
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/profile").concat(id)).then(function (_ref) {
-        var status = _ref.status,
-            message = _ref.message,
-            _ref$data = _ref.data,
-            data = _ref$data === void 0 ? '' : _ref$data;
+      e.preventDefault();
+      var formData = new FormData();
+      var _this$state = this.state,
+          name = _this$state.name,
+          email = _this$state.email,
+          role = _this$state.role,
+          fileUpload = _this$state.fileUpload;
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('role', role);
+      formData.append('avatar', fileUpload);
+      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/children"), formData, {
+        'content-type': 'multipart/form-data'
+      }).then(function (_ref2) {
+        var status = _ref2.status,
+            message = _ref2.message,
+            _ref2$data = _ref2.data,
+            data = _ref2$data === void 0 ? '' : _ref2$data;
 
-        if (status == 'success') {
-          _this2.setState({
-            profile: data.user
-          });
+        if (status === 'success') {
+          toastr.success(message);
+
+          _this2.getProfile(id);
         } else {
-          //this.setState({ users: data, usersLoaded: true, noData: true});
           toastr.error(message);
         }
       });
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.getProfile();
-    }
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
+      var _this$state2 = this.state,
+          name = _this$state2.name,
+          role = _this$state2.role,
+          email = _this$state2.email;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mt-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Add Child"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://www.w3schools.com/bootstrap4/cinqueterre.jpg",
+        loading: "lazy",
+        className: "img-thumbnail",
+        alt: "Cinque Terre",
+        width: "304",
+        height: "236"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "avatar"
+      }, "Select avatar:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        className: "form-control",
+        id: "avatar",
+        onChange: this.handleFileUpload
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "userName"
@@ -77518,8 +77587,9 @@ function (_Component) {
         type: "text",
         className: "form-control",
         id: "userName",
-        value: this.state.profile.name,
-        readOnly: true
+        name: "name",
+        value: name,
+        onChange: this.handleInputChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -77528,8 +77598,9 @@ function (_Component) {
         type: "text",
         className: "form-control",
         id: "email",
-        value: this.state.profile.email,
-        readOnly: true
+        value: email,
+        name: "email",
+        onChange: this.handleInputChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -77538,14 +77609,17 @@ function (_Component) {
         type: "text",
         className: "form-control",
         id: "role",
-        value: this.state.profile.role,
+        value: role,
         readOnly: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        type: "submit"
+      }, "Add"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/dashboard",
-        className: "btn btn-primary"
-      }, "Back to Dashboard")));
+        className: "btn btn-primary ml-3"
+      }, "Back to Dashboard"))));
     }
   }]);
 
@@ -77600,7 +77674,7 @@ function App() {
     component: _UserProfile__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
     exact: true,
-    path: "/users/child/add"
+    path: "/users/children"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddChild__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 }
 
@@ -77873,7 +77947,7 @@ function Header(props) {
     to: "/users/profile",
     className: "btn btn-primary"
   }, "My Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/users/add/child",
+    to: "/users/children",
     className: "btn btn-primary ml-2"
   }, "Add Child"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
@@ -78364,6 +78438,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -78402,10 +78482,14 @@ function (_Component) {
         name: loadingMsg,
         email: loadingMsg,
         role: loadingMsg,
-        id: loadingMsg
-      }
+        id: loadingMsg,
+        file: null
+      },
+      fileUpload: null
     };
     _this.handleFileUpload = _this.handleFileUpload.bind(_assertThisInitialized(_this));
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -78414,19 +78498,31 @@ function (_Component) {
     value: function getProfile() {
       var _this2 = this;
 
-      var id = this.props.match.params.userId ? "/".concat(this.props.match.params.userId) : '';
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/profile").concat(id)).then(function (_ref) {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/profile").concat(id ? "/".concat(id) : '')).then(function (_ref) {
         var status = _ref.status,
             message = _ref.message,
             _ref$data = _ref.data,
             data = _ref$data === void 0 ? '' : _ref$data;
 
         if (status == 'success') {
-          _this2.setState({
-            profile: data.user
+          var _data$user = data.user,
+              name = _data$user.name,
+              email = _data$user.email,
+              role = _data$user.role,
+              _id = _data$user.id;
+
+          _this2.setState(function (prevState, props) {
+            return {
+              profile: _objectSpread({}, prevState.profile, {
+                name: name,
+                email: email,
+                role: role,
+                id: _id
+              })
+            };
           });
         } else {
-          //this.setState({ users: data, usersLoaded: true, noData: true});
           toastr.error(message);
         }
       });
@@ -78434,20 +78530,74 @@ function (_Component) {
   }, {
     key: "handleFileUpload",
     value: function handleFileUpload(e) {
-      console.log(e.target.files);
-      console.log(e.target.files[0]);
+      var target = e.target;
+      this.setState({
+        fileUpload: target.files[0]
+      });
+    }
+  }, {
+    key: "handleInputChange",
+    value: function handleInputChange(e) {
+      var target = e.target;
+      this.setState(function (prevState, props) {
+        return {
+          profile: _objectSpread({}, prevState.profile, {
+            name: target.value
+          })
+        };
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var formData = new FormData();
+      var _this$state = this.state,
+          _this$state$profile = _this$state.profile,
+          name = _this$state$profile.name,
+          email = _this$state$profile.email,
+          role = _this$state$profile.role,
+          id = _this$state$profile.id,
+          fileUpload = _this$state.fileUpload;
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('role', role);
+      formData.append('avatar', fileUpload);
+      formData.append('id', id);
+      formData.append('_method', 'PUT');
+      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/profile"), formData, {
+        'content-type': 'multipart/form-data'
+      }).then(function (_ref2) {
+        var status = _ref2.status,
+            message = _ref2.message,
+            _ref2$data = _ref2.data,
+            data = _ref2$data === void 0 ? '' : _ref2$data;
+
+        if (status === 'success') {
+          toastr.success(message);
+
+          _this3.getProfile(id);
+        } else {
+          toastr.error(message);
+        }
+      });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getProfile();
+      var id = this.props.match.params.userId ? "".concat(this.props.match.params.userId) : '';
+      this.getProfile(id);
     }
   }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mt-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://www.w3schools.com/bootstrap4/cinqueterre.jpg",
@@ -78473,8 +78623,9 @@ function (_Component) {
         type: "text",
         className: "form-control",
         id: "userName",
+        name: "userName",
         value: this.state.profile.name,
-        readOnly: true
+        onChange: this.handleInputChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -78497,10 +78648,13 @@ function (_Component) {
         readOnly: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        type: "submit"
+      }, "Update"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/dashboard",
-        className: "btn btn-primary"
-      }, "Back to Dashboard")));
+        className: "btn btn-primary ml-3"
+      }, "Back to Dashboard"))));
     }
   }]);
 

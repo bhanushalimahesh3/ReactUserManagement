@@ -30,7 +30,7 @@ export default function App() {
         </Route>
         <Route exact path="/users/profile/:userId?" component={UserProfile}>
         </Route>
-        <Route exact path="/users/child/add">
+        <Route exact path="/users/children">
           <AddChild />
         </Route>
       </Switch> 

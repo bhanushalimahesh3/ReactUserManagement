@@ -15,36 +15,74 @@ export default class UserProfile extends Component {
 				name:loadingMsg,
 				email:loadingMsg,
 				role:loadingMsg,
-				id:loadingMsg
-			}
+				id:loadingMsg,
+				file:null
+			},
+			fileUpload : null
 		}
 
 		this.handleFileUpload = this.handleFileUpload.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 		
 	}
 
-	getProfile() {
-		const id = (this.props.match.params.userId) ? `/${this.props.match.params.userId}` : '';
-		axiosPost(`${baseUrl}/users/profile${id}`)
+	getProfile(id = null) {
+		
+		axiosPost(`${baseUrl}/users/profile${(id) ? `/${id}` : ''}`)
 		.then(({status, message, data = ''}) => {			
 			if(status == 'success'){
-				this.setState({ profile: data.user});
+				const {user:{name, email, role, id}} = data;
+				this.setState((prevState, props) => {
+					return ({profile :  {...prevState.profile, name, email, role, id}})
+				});
 			}else{
-				//this.setState({ users: data, usersLoaded: true, noData: true});
 				toastr.error(message);
 			}
 		 });
 	}
 
 	handleFileUpload(e) {
-		console.log(e.target.files)
-		console.log(e.target.files[0])
+		const target = e.target;
+		this.setState({fileUpload:target.files[0]});
+	}
+
+	handleInputChange(e) {
+		const target = e.target;
+		this.setState((prevState, props) => {
+			return ({profile: {...prevState.profile, name: target.value}});
+		})
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		let formData = new FormData();
+		const {profile : {name, email, role, id} , fileUpload} = this.state;
+		formData.append('name', name);
+		formData.append('email', email);
+		formData.append('role', role);
+		formData.append('avatar', fileUpload);
+		formData.append('id', id);
+		formData.append('_method', 'PUT');
+
+		axiosPost(`${baseUrl}/users/profile`, formData, {
+			'content-type': 'multipart/form-data'
+		})
+		.then(({status, message, data = ''}) => {			
+			if(status === 'success'){
+				toastr.success(message);
+				this.getProfile(id);
+			}else{
+				toastr.error(message);
+			}
+		 });
+		
 	}
 
 
-
 	componentDidMount() {
-	    this.getProfile();
+		const id = (this.props.match.params.userId) ? `${this.props.match.params.userId}` : '';
+	    this.getProfile(id);
 	  }
 
 
@@ -52,6 +90,7 @@ export default class UserProfile extends Component {
 		return (
 			<div className="mt-5">
 				<h2>Profile</h2>
+				<form onSubmit={this.handleSubmit}>
 					<div className="form-group">
 						<img src="https://www.w3schools.com/bootstrap4/cinqueterre.jpg" loading="lazy" className="img-thumbnail" alt="Cinque Terre" width="304" height="236" />					 
 					</div>
@@ -68,8 +107,9 @@ export default class UserProfile extends Component {
 				      <input type="text" 
 			      			 className="form-control" 
 							   id="userName"
+							   name="userName"
 							   value={this.state.profile.name}
-							   readOnly	
+							   onChange={this.handleInputChange}	
 			      			 />
 				    </div>				  
 				    <div className="form-group">
@@ -90,11 +130,13 @@ export default class UserProfile extends Component {
 							   readOnly
 							   />
 				    </div>
+					
 					<div className="form-group">
-						<Link to="/dashboard" className="btn btn-primary">Back to Dashboard</Link>
+						<button className="btn btn-primary" type="submit">Update</button>
+						<Link to="/dashboard" className="btn btn-primary ml-3">Back to Dashboard</Link>
 					</div>
 					
-				 			
+				</form> 			
 			</div>
 			
 			);

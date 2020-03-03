@@ -27,7 +27,9 @@ Route::middleware('auth')->group(function(){
     });
     Route::view('/users/profile/{id?}', 'auth');
     Route::post('/users/profile/{id?}', 'UserController@getProfile')->where(['id' => '[0-9]+']);
-    Route::view('/users/add', 'auth');
+    Route::put('/users/profile', 'UserController@update');
+    Route::view('/users/children', 'auth');
+    Route::post('/users/children', 'UserController@store');
     Route::get('/users', 'UserController@index');
     Route::delete('/users/{id}', 'UserController@delete')->where(['id' => '[0-9]*']);
 });
