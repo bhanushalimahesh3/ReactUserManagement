@@ -77484,7 +77484,8 @@ function (_Component) {
       name: '',
       email: '',
       role: 'child',
-      fileUpload: null
+      fileUpload: null,
+      isAdded: false
     };
     _this.handleFileUpload = _this.handleFileUpload.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
@@ -77506,10 +77507,6 @@ function (_Component) {
       var _e$target = e.target,
           name = _e$target.name,
           value = _e$target.value;
-      console.log({
-        name: name,
-        value: value
-      });
       this.setState(function (prevState, props) {
         return _defineProperty({}, name, value);
       });
@@ -77541,7 +77538,9 @@ function (_Component) {
         if (status === 'success') {
           toastr.success(message);
 
-          _this2.getProfile(id);
+          _this2.setState({
+            isAdded: true
+          });
         } else {
           toastr.error(message);
         }
@@ -77556,7 +77555,11 @@ function (_Component) {
       var _this$state2 = this.state,
           name = _this$state2.name,
           role = _this$state2.role,
-          email = _this$state2.email;
+          email = _this$state2.email,
+          isAdded = _this$state2.isAdded;
+      if (isAdded) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+        to: "/dashboard"
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mt-5"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Add Child"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {

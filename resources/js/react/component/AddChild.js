@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from '../axiosCall';
 import {
-	Link
+	Link,
+	Redirect
   } from "react-router-dom";
 import './../../../../node_modules/toastr/build/toastr.css';
 
@@ -13,7 +14,8 @@ export default class AddChild extends Component {
 			name:'',
 			email:'',
 			role:'child',
-			fileUpload : null
+			fileUpload : null,
+			isAdded : false
 		}
 
 		this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -29,7 +31,6 @@ export default class AddChild extends Component {
 
 	handleInputChange(e) {
 		const {name, value} = e.target;
-		console.log({name,value});
 		this.setState((prevState, props) => {
 			return ({[name] : value});
 		});
@@ -50,7 +51,7 @@ export default class AddChild extends Component {
 		.then(({status, message, data = ''}) => {			
 			if(status === 'success'){
 				toastr.success(message);
-				this.getProfile(id);
+				this.setState({isAdded:true});
 			}else{
 				toastr.error(message);
 			}
@@ -65,7 +66,11 @@ export default class AddChild extends Component {
 
 
 	render() {
-		const {name, role, email} = this.state;
+		const {name, role, email, isAdded} = this.state;
+
+		if(isAdded)
+			return <Redirect to='/dashboard' />
+
 		return (
 			<div className="mt-5">
 				<h2>Add Child</h2>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -56,11 +57,18 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
-        if(User::create($request->all()));
-            return response()
-                ->json(['status' => 'success', 'message' => 'User added successfully']); 
-        
-        return response()->json(['status' => 'error', 'message' => 'Unable to add user']);         
+        try{
+			$isSaved = User::create(['email' => $request->email,
+                                    'name' => $request->name,
+                                    'role' => 'child',
+									'password' => Hash::make('123456789')]);
+
+			if($isSaved)
+				return response()->json(['status' => 'success', 'message' => 'User created']);
+
+			return response()->json(['status' => 'error', 'message' => 'Something looks wrong!!']);
+		}catch(QueryException $e) {
+			return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+		}         
     }
 }
