@@ -73,7 +73,7 @@ export default class AuthUserLayout extends Component {
                 <h1>Auth Layout</h1>
                 <h2>{title}</h2>
                 <Header logoutHandler = {this.logoutHandler} userInfo={this.state.profile} />
-                <Page match = {match} location = {location} history={history} updateLogout = {this.updateLogout}/>
+                <Page match = {match} location = {location} history={history} updateLogout = {this.updateLogout} userInfo={this.state.profile}/>
             </div>
         );
     }

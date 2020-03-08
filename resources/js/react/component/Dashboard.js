@@ -101,7 +101,8 @@ export default class Dashboard extends Component {
 				<TableContainer users = {this.state.users} 
 								loaded = {this.state.usersLoaded} 
 								noData = {this.state.noData} 
-								deleteHandler = {this.deleteHandler} />
+								deleteHandler = {this.deleteHandler} 
+								userInfo = {this.props.userInfo}/>
 			</div>
 			);
 	}
@@ -113,7 +114,8 @@ function TableContainer(props) {
 	<div className="row">
 		<div className="col-12">
 			<h2>Dashboard</h2>
-			<Table users={props.users} loaded={props.loaded} noData = {props.noData} deleteHandler={props.deleteHandler}/>
+			<Table users={props.users} loaded={props.loaded} noData = {props.noData} deleteHandler={props.deleteHandler}
+			userInfo = {props.userInfo}/>
 		</div>
 	</div>				
 </div>);
@@ -121,8 +123,9 @@ function TableContainer(props) {
 
 
 function Table(props) {
+
 	const rows = (props.loaded) ? ((props.noData) ? (<tr><td>No data found</td></tr>) : (props.users.map(function(obj, index) {
-		return (<TableRow rowData={obj} key={obj.id} deleteHandler={props.deleteHandler}/>)
+		return (<TableRow rowData={obj} key={obj.id} deleteHandler={props.deleteHandler} userInfo = {props.userInfo}/>)
 	}))): (<tr><td>Loading...</td></tr>);
 
 	return (
@@ -144,13 +147,17 @@ function Table(props) {
 }
 
 function TableRow(props) {
+	const {userInfo : {role}} = props;
 	return (<tr>
 				<td>{props.rowData.id}</td>
 				<td>{props.rowData.name}</td>
 				<td>{props.rowData.email}</td>
 				<td>{props.rowData.role}</td>
-				<td><Link to={`/users/profile/${props.rowData.id}`} className="btn btn-primary">View</Link>
-				<button type="button" className="btn btn-danger ml-1" onClick={() => props.deleteHandler(props.rowData.id)}>Delete</button></td>
+				<td>
+					<Link to={`/users/profile/${props.rowData.id}`} className="btn btn-primary">View</Link>
+					{(role && (role === 'parent') && <button type="button" className="btn btn-danger ml-1" onClick={() => props.deleteHandler(props.rowData.id)}>Delete</button>)}
+					
+				</td>
 
 			</tr>)
 }

@@ -7,7 +7,7 @@ import ActionButton from './ActionButton';
 
 export default function Header(props)
 {
-    console.log(props);
+    
     return (
         <div className="mt-5">
             <Biocard userInfo = {props.userInfo} />

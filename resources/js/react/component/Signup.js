@@ -130,6 +130,7 @@ export default class Signup extends Component {
 	} */
 
 	render() {
+		
 		if(this.state.showSignIn)
 			return <Redirect to='/signin' />
 

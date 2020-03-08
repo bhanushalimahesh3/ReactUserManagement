@@ -91,6 +91,7 @@ export default class Signin extends Component {
 	}
 
 	render() {
+		
 		if(this.state.showDashboard)
 		return <Redirect to='/dashboard' />
 
