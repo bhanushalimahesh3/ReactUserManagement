@@ -21,12 +21,12 @@ export default class Dashboard extends Component {
 		this.state = {
 			users : [],
 			usersLoaded : false,
-			isLoggedOut : false,
+			//isLoggedOut : false,
 			noData : false
 		}
 
 		this.getUserList = this.getUserList.bind(this);
-		this.logoutHandler = this.logoutHandler.bind(this);
+		//this.logoutHandler = this.logoutHandler.bind(this);
 		this.deleteHandler = this.deleteHandler.bind(this);
 	}
 
@@ -47,7 +47,7 @@ export default class Dashboard extends Component {
 		 });
 	}
 
-	logoutHandler() {
+	/*logoutHandler() {
 		axiosGet(`${baseUrl}/logout`)
 		.then(({status, message, data = ''}) => {			
 			if(status == 'success'){
@@ -56,7 +56,7 @@ export default class Dashboard extends Component {
 				toastr.error(message);
 			}
 		 });
-	}
+	}*/
 
 	deleteHandler(id='') {
 
@@ -73,7 +73,8 @@ export default class Dashboard extends Component {
 				.then(({status, message, data, statusCode}) => {
 					const isGuest = AuthHandler(statusCode);
 					if(isGuest)
-						this.setState({ isLoggedOut: true});
+						this.props.updateLogout();
+						//this.setState({ isLoggedOut: true});
 							
 					if(status === 'success'){
 						this.getUserList();
@@ -91,12 +92,12 @@ export default class Dashboard extends Component {
 
 
 	render() {
-		if(this.state.isLoggedOut)
-			return <Redirect to="/" />
+/*		if(this.state.isLoggedOut)
+			return <Redirect to="/" />*/
 
 		return (
 			<div>
-				<Header logoutHandler = {this.logoutHandler}/>
+				{/* <Header logoutHandler = {this.logoutHandler}/> */}
 				<TableContainer users = {this.state.users} 
 								loaded = {this.state.usersLoaded} 
 								noData = {this.state.noData} 

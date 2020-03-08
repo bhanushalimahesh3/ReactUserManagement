@@ -81,6 +81,7 @@ export default class UserProfile extends Component {
 
 
 	componentDidMount() {
+		console.log(this.props);
 		const id = (this.props.match.params.userId) ? `${this.props.match.params.userId}` : '';
 	    this.getProfile(id);
 	  }
