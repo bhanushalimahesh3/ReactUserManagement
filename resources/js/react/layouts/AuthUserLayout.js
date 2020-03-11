@@ -38,10 +38,20 @@ export default class AuthUserLayout extends Component {
 		 });
     }
 
-    getProfile(id = null) {
+    async getProfile(id = null) {
 		
-		axiosPost(`${baseUrl}/users/profile${(id) ? `/${id}` : ''}`)
-		.then(({status, message, data = ''}) => {			
+		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile${(id) ? `/${id}` : ''}`);
+
+		if(status === 'success'){
+			const {user:{name, email, role, id}} = data;
+			this.setState((prevState, props) => {
+				return ({profile :  {...prevState.profile, name, email, role, id}})
+			});
+		}else{
+			toastr.error(message);
+		}
+
+/* 		.then(({status, message, data = ''}) => {			
 			if(status == 'success'){
 				const {user:{name, email, role, id}} = data;
 				this.setState((prevState, props) => {
@@ -50,7 +60,7 @@ export default class AuthUserLayout extends Component {
 			}else{
 				toastr.error(message);
 			}
-		 });
+		 }); */
 	}
 
     updateLogout(){
@@ -59,7 +69,8 @@ export default class AuthUserLayout extends Component {
 
     componentDidMount() {
 		const id = (this.props.match.params.userId) ? `${this.props.match.params.userId}` : '';
-	    this.getProfile(id);
+		this.getProfile(id);
+		
 	  }
     
     render() {
