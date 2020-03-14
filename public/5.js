@@ -10,12 +10,16 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserProfile; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../axiosCall */ "./resources/js/react/axiosCall.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
-/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../axiosCall */ "./resources/js/react/axiosCall.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
+/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__);
+
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -23,6 +27,10 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -75,38 +83,79 @@ function (_Component) {
 
   _createClass(UserProfile, [{
     key: "getProfile",
-    value: function getProfile() {
-      var _this2 = this;
+    value: function () {
+      var _getProfile = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var id,
+            _ref,
+            status,
+            message,
+            _ref$data,
+            data,
+            _data$user,
+            name,
+            email,
+            role,
+            _id,
+            _args = arguments;
 
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/profile").concat(id ? "/".concat(id) : '')).then(function (_ref) {
-        var status = _ref.status,
-            message = _ref.message,
-            _ref$data = _ref.data,
-            data = _ref$data === void 0 ? '' : _ref$data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                id = _args.length > 0 && _args[0] !== undefined ? _args[0] : null;
+                _context.next = 3;
+                return Object(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["baseUrl"], "/users/profile").concat(id ? "/".concat(id) : ''));
 
-        if (status == 'success') {
-          var _data$user = data.user,
-              name = _data$user.name,
-              email = _data$user.email,
-              role = _data$user.role,
-              _id = _data$user.id;
+              case 3:
+                _ref = _context.sent;
+                status = _ref.status;
+                message = _ref.message;
+                _ref$data = _ref.data;
+                data = _ref$data === void 0 ? '' : _ref$data;
 
-          _this2.setState(function (prevState, props) {
-            return {
-              profile: _objectSpread({}, prevState.profile, {
-                name: name,
-                email: email,
-                role: role,
-                id: _id
-              })
-            };
-          });
-        } else {
-          toastr.error(message);
-        }
-      });
-    }
+                if (status == 'success') {
+                  _data$user = data.user, name = _data$user.name, email = _data$user.email, role = _data$user.role, _id = _data$user.id;
+                  this.setState(function (prevState, props) {
+                    return {
+                      profile: _objectSpread({}, prevState.profile, {
+                        name: name,
+                        email: email,
+                        role: role,
+                        id: _id
+                      })
+                    };
+                  });
+                } else {
+                  toastr.error(message);
+                }
+                /* 		.then(({status, message, data = ''}) => {			
+                			if(status == 'success'){
+                				const {user:{name, email, role, id}} = data;
+                				this.setState((prevState, props) => {
+                					return ({profile :  {...prevState.profile, name, email, role, id}})
+                				});
+                			}else{
+                				toastr.error(message);
+                			}
+                		 }); */
+
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getProfile() {
+        return _getProfile.apply(this, arguments);
+      }
+
+      return getProfile;
+    }()
   }, {
     key: "handleFileUpload",
     value: function handleFileUpload(e) {
@@ -129,41 +178,67 @@ function (_Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      var _this3 = this;
+    value: function () {
+      var _handleSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
+        var formData, _this$state, _this$state$profile, name, email, role, id, fileUpload, _ref2, status, message, _ref2$data, data;
 
-      e.preventDefault();
-      var formData = new FormData();
-      var _this$state = this.state,
-          _this$state$profile = _this$state.profile,
-          name = _this$state$profile.name,
-          email = _this$state$profile.email,
-          role = _this$state$profile.role,
-          id = _this$state$profile.id,
-          fileUpload = _this$state.fileUpload;
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('role', role);
-      formData.append('avatar', fileUpload);
-      formData.append('id', id);
-      formData.append('_method', 'PUT');
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/users/profile"), formData, {
-        'content-type': 'multipart/form-data'
-      }).then(function (_ref2) {
-        var status = _ref2.status,
-            message = _ref2.message,
-            _ref2$data = _ref2.data,
-            data = _ref2$data === void 0 ? '' : _ref2$data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                e.preventDefault();
+                formData = new FormData();
+                _this$state = this.state, _this$state$profile = _this$state.profile, name = _this$state$profile.name, email = _this$state$profile.email, role = _this$state$profile.role, id = _this$state$profile.id, fileUpload = _this$state.fileUpload;
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('role', role);
+                formData.append('avatar', fileUpload);
+                formData.append('id', id);
+                formData.append('_method', 'PUT');
+                _context2.next = 11;
+                return Object(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["baseUrl"], "/users/profile"), formData, {
+                  'content-type': 'multipart/form-data'
+                });
 
-        if (status === 'success') {
-          toastr.success(message);
+              case 11:
+                _ref2 = _context2.sent;
+                status = _ref2.status;
+                message = _ref2.message;
+                _ref2$data = _ref2.data;
+                data = _ref2$data === void 0 ? '' : _ref2$data;
 
-          _this3.getProfile(id);
-        } else {
-          toastr.error(message);
-        }
-      });
-    }
+                if (status === 'success') {
+                  toastr.success(message);
+                  this.getProfile(id);
+                } else {
+                  toastr.error(message);
+                }
+                /* 		.then(({status, message, data = ''}) => {			
+                			if(status === 'success'){
+                				toastr.success(message);
+                				this.getProfile(id);
+                			}else{
+                				toastr.error(message);
+                			}
+                		 }); */
+
+
+              case 17:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -173,65 +248,65 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "mt-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: "https://www.w3schools.com/bootstrap4/cinqueterre.jpg",
         loading: "lazy",
         className: "img-thumbnail",
         alt: "Cinque Terre",
         width: "304",
         height: "236"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "avatar"
-      }, "Select avatar:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Select avatar:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "file",
         className: "form-control",
         id: "avatar",
         onChange: this.handleFileUpload
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "userName"
-      }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Name:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
         className: "form-control",
         id: "userName",
         name: "userName",
         value: this.state.profile.name,
         onChange: this.handleInputChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
         className: "form-control",
         id: "email",
         value: this.state.profile.email,
         readOnly: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "role"
-      }, "Role:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Role:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
         className: "form-control",
         id: "role",
         value: this.state.profile.role,
         readOnly: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "btn btn-primary",
         type: "submit"
-      }, "Update"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, "Update"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/dashboard",
         className: "btn btn-primary ml-3"
       }, "Back to Dashboard"))));
@@ -239,7 +314,7 @@ function (_Component) {
   }]);
 
   return UserProfile;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 
 

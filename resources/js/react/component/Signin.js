@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from './../axiosCall';
 import {
-	Switch,
-	Route,
 	Link,
-	Redirect,
-	useRouteMatch,
-	useParams
+	Redirect
   } from "react-router-dom";
 
 import './../../../../node_modules/toastr/build/toastr.css';
+import {validateSignin} from './Validation.js';
 
 export default class Signin extends Component {
 
@@ -26,19 +23,24 @@ export default class Signin extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleSubmit(event) {
+	async handleSubmit(event) {
 		event.preventDefault();
 		const data = {email : this.state.email,  
-			    password : this.state.pwd};
+			          password : this.state.pwd};
 
-		axiosPost(`${baseUrl}/signin`, data)
-		.then(({status, message}) => {
+		const {status, message} =  await axiosPost(`${baseUrl}/signin`, data);
+		if(status === 'success'){
+			this.setState({showDashboard : true});
+		}else{
+			toastr.error(message);
+		}
+/* 		.then(({status, message}) => {
 			if(status == 'success'){
 				this.setState({showDashboard : true});
 			}else{
 				toastr.error(message);
 			}	
-		});    
+		});   */  
 	}
 
 	handleChange(event) {
@@ -46,7 +48,7 @@ export default class Signin extends Component {
 	}
 
 
-	validate({name, email, pwd, cpwd}) {
+/* 	validate({name, email, pwd, cpwd}) {
 		let errorCount = 0;
 		const errors  =  {
 							email: {
@@ -88,14 +90,14 @@ export default class Signin extends Component {
 		}
 
 		return {errors, errorCount};
-	}
+	} */
 
 	render() {
 		
 		if(this.state.showDashboard)
 		return <Redirect to='/dashboard' />
 
-		const {errors, errorCount} = this.validate(this.state);
+		const {errors, errorCount} = validateSignin(this.state);
 		return (
 			<div className="mt-5">
 				<h2>Signin form</h2>

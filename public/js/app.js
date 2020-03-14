@@ -57320,51 +57320,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _react_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./react/index.js */ "./resources/js/react/index.js");
-//window._ = require('lodash');
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js"); //require('jquery');
-
-/* require('react');
-require('react-dom'); */
-
+__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
 window.toastr = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
- //require('./react/index.js');
 
-/* import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './react/component/App';
-import {
-    BrowserRouter as Router
-  } from "react-router-dom";
-
-ReactDOM.render(
-    <Router>
-        <App />
-    </Router>, 
-    document.getElementById('app')); */
-
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
 
 /***/ }),
 
@@ -57457,7 +57419,7 @@ function ActionButton(props) {
   }, location.pathname !== '/users/profile' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/users/profile",
     className: "btn btn-primary"
-  }, "My Profile"), role && role == 'parent' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "My Profile"), role && role == 'parent' && location.pathname !== '/users/children' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/users/children",
     className: "btn btn-primary ml-2"
   }, "Add Child"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -57497,10 +57459,10 @@ import AddChild from './AddChild'; */
 
 
 var Signin = react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./Signin */ "./resources/js/react/component/Signin.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./Signin */ "./resources/js/react/component/Signin.js"));
 });
 var Signup = react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./Signup */ "./resources/js/react/component/Signup.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./Signup */ "./resources/js/react/component/Signup.js"));
 });
 var Dashboard = react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
   return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./Dashboard */ "./resources/js/react/component/Dashboard.js"));
@@ -57509,11 +57471,11 @@ var UserProfile = react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () 
   return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./UserProfile */ "./resources/js/react/component/UserProfile.js"));
 });
 var AddChild = react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./AddChild */ "./resources/js/react/component/AddChild.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./AddChild */ "./resources/js/react/component/AddChild.js"));
 });
 function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Suspense, {
-    fallback: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Loading...."))
+    fallback: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Suspense Loading...."))
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/signin"
@@ -57606,11 +57568,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Biocard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Biocard */ "./resources/js/react/component/Biocard.js");
-/* harmony import */ var _ActionButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ActionButton */ "./resources/js/react/component/ActionButton.js");
+/* harmony import */ var _Biocard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Biocard */ "./resources/js/react/component/Biocard.js");
+/* harmony import */ var _ActionButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ActionButton */ "./resources/js/react/component/ActionButton.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 
 
 
@@ -57618,9 +57578,9 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 function Header(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-5"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Biocard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Biocard__WEBPACK_IMPORTED_MODULE_1__["default"], {
     userInfo: props.userInfo
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ActionButton__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, props, {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ActionButton__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, props, {
     userInfo: props.userInfo
   })));
 }
@@ -57729,30 +57689,62 @@ function (_Component) {
 
   _createClass(AuthUserLayout, [{
     key: "logoutHandler",
-    value: function logoutHandler() {
-      var _this2 = this;
+    value: function () {
+      var _logoutHandler = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _ref, status, message, _ref$data, data;
 
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_3__["axiosGet"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_3__["baseUrl"], "/logout")).then(function (_ref) {
-        var status = _ref.status,
-            message = _ref.message,
-            _ref$data = _ref.data,
-            data = _ref$data === void 0 ? '' : _ref$data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return Object(_axiosCall__WEBPACK_IMPORTED_MODULE_3__["axiosGet"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_3__["baseUrl"], "/logout"));
 
-        if (status == 'success') {
-          _this2.setState({
-            isLoggedOut: true
-          });
-        } else {
-          toastr.error(message);
-        }
-      });
-    }
+              case 2:
+                _ref = _context.sent;
+                status = _ref.status;
+                message = _ref.message;
+                _ref$data = _ref.data;
+                data = _ref$data === void 0 ? '' : _ref$data;
+
+                if (status == 'success') {
+                  this.setState({
+                    isLoggedOut: true
+                  });
+                } else {
+                  toastr.error(message);
+                }
+                /* 		.then(({status, message, data = ''}) => {			
+                			if(status == 'success'){
+                				this.setState({ isLoggedOut: true});
+                			}else{
+                				toastr.error(message);
+                			}
+                		 }); */
+
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function logoutHandler() {
+        return _logoutHandler.apply(this, arguments);
+      }
+
+      return logoutHandler;
+    }()
   }, {
     key: "getProfile",
     value: function () {
       var _getProfile = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var id,
             _ref2,
             status,
@@ -57764,18 +57756,18 @@ function (_Component) {
             email,
             role,
             _id,
-            _args = arguments;
+            _args2 = arguments;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                id = _args.length > 0 && _args[0] !== undefined ? _args[0] : null;
-                _context.next = 3;
+                id = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : null;
+                _context2.next = 3;
                 return Object(_axiosCall__WEBPACK_IMPORTED_MODULE_3__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_3__["baseUrl"], "/users/profile").concat(id ? "/".concat(id) : ''));
 
               case 3:
-                _ref2 = _context.sent;
+                _ref2 = _context2.sent;
                 status = _ref2.status;
                 message = _ref2.message;
                 _ref2$data = _ref2.data;
@@ -57810,10 +57802,10 @@ function (_Component) {
 
               case 9:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getProfile() {

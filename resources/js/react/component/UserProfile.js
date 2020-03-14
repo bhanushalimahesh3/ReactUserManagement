@@ -27,10 +27,19 @@ export default class UserProfile extends Component {
 		
 	}
 
-	getProfile(id = null) {
+	async getProfile(id = null) {
 		
-		axiosPost(`${baseUrl}/users/profile${(id) ? `/${id}` : ''}`)
-		.then(({status, message, data = ''}) => {			
+		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile${(id) ? `/${id}` : ''}`);
+		if(status == 'success'){
+			const {user:{name, email, role, id}} = data;
+			this.setState((prevState, props) => {
+				return ({profile :  {...prevState.profile, name, email, role, id}})
+			});
+		}else{
+			toastr.error(message);
+		}
+
+/* 		.then(({status, message, data = ''}) => {			
 			if(status == 'success'){
 				const {user:{name, email, role, id}} = data;
 				this.setState((prevState, props) => {
@@ -39,7 +48,7 @@ export default class UserProfile extends Component {
 			}else{
 				toastr.error(message);
 			}
-		 });
+		 }); */
 	}
 
 	handleFileUpload(e) {
@@ -54,7 +63,7 @@ export default class UserProfile extends Component {
 		})
 	}
 
-	handleSubmit(e) {
+	async handleSubmit(e) {
 		e.preventDefault();
 		let formData = new FormData();
 		const {profile : {name, email, role, id} , fileUpload} = this.state;
@@ -65,17 +74,24 @@ export default class UserProfile extends Component {
 		formData.append('id', id);
 		formData.append('_method', 'PUT');
 
-		axiosPost(`${baseUrl}/users/profile`, formData, {
+		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile`, formData, {
 			'content-type': 'multipart/form-data'
-		})
-		.then(({status, message, data = ''}) => {			
+		});
+		if(status === 'success'){
+			toastr.success(message);
+			this.getProfile(id);
+		}else{
+			toastr.error(message);
+		}
+
+/* 		.then(({status, message, data = ''}) => {			
 			if(status === 'success'){
 				toastr.success(message);
 				this.getProfile(id);
 			}else{
 				toastr.error(message);
 			}
-		 });
+		 }); */
 		
 	}
 

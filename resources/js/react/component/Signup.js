@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from './../axiosCall';
 import {
-	Switch,
-	Route,
 	Link,
-	Redirect,
-	useRouteMatch,
-	useParams
+	Redirect
   } from "react-router-dom";
 import './../../../../node_modules/toastr/build/toastr.css';
-import validate from './Validation.js';
+import {validateSignup} from './Validation.js';
   
 
 export default class Signup extends Component {
@@ -29,13 +25,21 @@ export default class Signup extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleSubmit(event) {
+	async handleSubmit(event) {
 		event.preventDefault();
 		const data = {email : this.state.email, name : this.state.name, 
 			    password : this.state.pwd, password_confirm : this.state.cpwd};
 
-		axiosPost(`${baseUrl}/signup`, data)
-		.then(({status, message}) => {
+		const {status, message} = await axiosPost(`${baseUrl}/signup`, data);
+		if(status === 'success'){
+			toastr.success(message);
+			this.setState({showSignIn : true});
+			//console.log(this.state);
+		}else{
+			toastr.error(message);
+		}
+
+/* 		.then(({status, message}) => {
 			if(status == 'success'){
 				toastr.success(message);
 				this.setState({showSignIn : true});
@@ -44,7 +48,7 @@ export default class Signup extends Component {
 				toastr.error(message);
 			}
 
-		});    
+		});  */   
 	}
 
 	handleChange(event) {
@@ -134,7 +138,7 @@ export default class Signup extends Component {
 		if(this.state.showSignIn)
 			return <Redirect to='/signin' />
 
-		const {errors, errorCount} = validate(this.state);
+		const {errors, errorCount} = validateSignup(this.state);
 		return (
 			<div className="mt-5">
 				<h2>Signup form</h2>

@@ -1,25 +1,33 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
 
-/***/ "./resources/js/react/component/Signup.js":
+/***/ "./resources/js/react/component/Signin.js":
 /*!************************************************!*\
-  !*** ./resources/js/react/component/Signup.js ***!
+  !*** ./resources/js/react/component/Signin.js ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Signup; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../axiosCall */ "./resources/js/react/axiosCall.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
-/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Validation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Validation.js */ "./resources/js/react/component/Validation.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Signin; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../axiosCall */ "./resources/js/react/axiosCall.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
+/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Validation_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Validation.js */ "./resources/js/react/component/Validation.js");
+
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -43,57 +51,82 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Signup =
+var Signin =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Signup, _Component);
+  _inherits(Signin, _Component);
 
-  function Signup(props) {
+  function Signin(props) {
     var _this;
 
-    _classCallCheck(this, Signup);
+    _classCallCheck(this, Signin);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Signup).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Signin).call(this, props));
     _this.state = {
-      name: '',
       email: '',
       pwd: '',
-      cpwd: '',
-      showSignIn: false
+      showDashboard: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(Signup, [{
+  _createClass(Signin, [{
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      var _this2 = this;
+    value: function () {
+      var _handleSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
+        var data, _ref, status, message;
 
-      event.preventDefault();
-      var data = {
-        email: this.state.email,
-        name: this.state.name,
-        password: this.state.pwd,
-        password_confirm: this.state.cpwd
-      };
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/signup"), data).then(function (_ref) {
-        var status = _ref.status,
-            message = _ref.message;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                event.preventDefault();
+                data = {
+                  email: this.state.email,
+                  password: this.state.pwd
+                };
+                _context.next = 4;
+                return Object(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["baseUrl"], "/signin"), data);
 
-        if (status == 'success') {
-          toastr.success(message);
+              case 4:
+                _ref = _context.sent;
+                status = _ref.status;
+                message = _ref.message;
 
-          _this2.setState({
-            showSignIn: true
-          }); //console.log(this.state);
+                if (status === 'success') {
+                  this.setState({
+                    showDashboard: true
+                  });
+                } else {
+                  toastr.error(message);
+                }
+                /* 		.then(({status, message}) => {
+                			if(status == 'success'){
+                				this.setState({showDashboard : true});
+                			}else{
+                				toastr.error(message);
+                			}	
+                		});   */
 
-        } else {
-          toastr.error(message);
-        }
-      });
-    }
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "handleChange",
     value: function handleChange(event) {
@@ -102,10 +135,6 @@ function (_Component) {
     /* 	validate({name, email, pwd, cpwd}) {
     		let errorCount = 0;
     		const errors  =  {
-    							name: {
-    								valid: true,
-    								message: ''
-    							},
     							email: {
     								valid: true,
     								message: ''
@@ -113,25 +142,9 @@ function (_Component) {
     							pwd: {
     								valid: true,
     								message: ''
-    							},
-    							cpwd: {
-    								valid: true,
-    								message: ''
     							}
     						};
     
-    		if(name == '' || name.length == 0){
-    			errors.name = {
-    				valid:false,
-    				message:'Name field is required'
-    			};
-    			errorCount += 1;
-    		}else{
-    			errors.name = {
-    				valid:true,
-    				message:''
-    			};
-    		}
     
     		if(email == '' || email.length == 0){
     			errors.email = {
@@ -160,103 +173,64 @@ function (_Component) {
     			};
     		}
     
-    		if(cpwd == '' || cpwd.length == 0 || pwd != cpwd){
-    			errors.cpwd = {
-    				valid:false,
-    				message:'Confirm password field is required. Password & Confirm password mismatch'
-    			};
-    			errorCount += 1;
-    		}else{
-    			errors.cpwd = {
-    				valid:true,
-    				message:''
-    			};
-    		}
-    
     		return {errors, errorCount};
     	} */
 
   }, {
     key: "render",
     value: function render() {
-      if (this.state.showSignIn) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/signin"
+      if (this.state.showDashboard) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Redirect"], {
+        to: "/dashboard"
       });
 
-      var _validate = Object(_Validation_js__WEBPACK_IMPORTED_MODULE_4__["default"])(this.state),
-          errors = _validate.errors,
-          errorCount = _validate.errorCount;
+      var _validateSignin = Object(_Validation_js__WEBPACK_IMPORTED_MODULE_5__["validateSignin"])(this.state),
+          errors = _validateSignin.errors,
+          errorCount = _validateSignin.errorCount;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "mt-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Signup form"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Signin form"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "name"
-      }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "name",
-        name: "name",
-        value: this.state.name,
-        onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "text-danger errors.name.valid && 'd-none'"
-      }, errors.name.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "email",
         className: "form-control",
         id: "email",
         name: "email",
         value: this.state.email,
         onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         className: "text-danger errors.email.valid && 'd-none'"
-      }, errors.email.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, errors.email.message)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "pwd"
-      }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Password:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "password",
         className: "form-control",
         id: "pwd",
         name: "pwd",
         value: this.state.pwd,
         onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         className: "text-danger errors.pwd.valid && 'd-none'"
-      }, errors.pwd.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, errors.pwd.message)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "cpwd"
-      }, "Confirm Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
-        className: "form-control",
-        id: "cpwd",
-        name: "cpwd",
-        value: this.state.cpwd,
-        onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "text-danger errors.cpwd.valid && 'd-none'"
-      }, errors.cpwd.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/signin"
-      }, "Already have an account? Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/signup"
+      }, "Not have an account? Register now")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary",
         disabled: errorCount > 0
-      }, "Signup")));
+      }, "Login")));
     }
   }]);
 
-  return Signup;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+  return Signin;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 
 
@@ -266,13 +240,14 @@ function (_Component) {
 /*!****************************************************!*\
   !*** ./resources/js/react/component/Validation.js ***!
   \****************************************************/
-/*! exports provided: default */
+/*! exports provided: validateSignup, validateSignin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return validate; });
-function validate(_ref) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateSignup", function() { return validateSignup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateSignin", function() { return validateSignin; });
+function validateSignup(_ref) {
   var name = _ref.name,
       email = _ref.email,
       pwd = _ref.pwd,
@@ -354,6 +329,55 @@ function validate(_ref) {
     errorCount: errorCount
   };
 }
+
+function validateSignin(_ref2) {
+  var email = _ref2.email,
+      pwd = _ref2.pwd;
+  var errorCount = 0;
+  var errors = {
+    email: {
+      valid: true,
+      message: ''
+    },
+    pwd: {
+      valid: true,
+      message: ''
+    }
+  };
+
+  if (email == '' || email.length == 0) {
+    errors.email = {
+      valid: false,
+      message: 'Email field is required'
+    };
+    errorCount += 1;
+  } else {
+    errors.email = {
+      valid: true,
+      message: ''
+    };
+  }
+
+  if (pwd == '' || pwd.length == 0) {
+    errors.pwd = {
+      valid: false,
+      message: 'Password field is required'
+    };
+    errorCount += 1;
+  } else {
+    errors.pwd = {
+      valid: true,
+      message: ''
+    };
+  }
+
+  return {
+    errors: errors,
+    errorCount: errorCount
+  };
+}
+
+
 
 /***/ })
 

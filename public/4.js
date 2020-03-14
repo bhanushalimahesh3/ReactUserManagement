@@ -1,22 +1,30 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./resources/js/react/component/Signin.js":
-/*!************************************************!*\
-  !*** ./resources/js/react/component/Signin.js ***!
-  \************************************************/
+/***/ "./resources/js/react/component/AddChild.js":
+/*!**************************************************!*\
+  !*** ./resources/js/react/component/AddChild.js ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Signin; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../axiosCall */ "./resources/js/react/axiosCall.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
-/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddChild; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../axiosCall */ "./resources/js/react/axiosCall.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
+/* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__);
+
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -41,160 +49,184 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Signin =
+var AddChild =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Signin, _Component);
+  _inherits(AddChild, _Component);
 
-  function Signin(props) {
+  function AddChild(props) {
     var _this;
 
-    _classCallCheck(this, Signin);
+    _classCallCheck(this, AddChild);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Signin).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddChild).call(this, props));
     _this.state = {
+      name: '',
       email: '',
-      pwd: '',
-      showDashboard: false
+      role: 'child',
+      fileUpload: null,
+      isAdded: false
     };
+    _this.handleFileUpload = _this.handleFileUpload.bind(_assertThisInitialized(_this));
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(Signin, [{
-    key: "handleSubmit",
-    value: function handleSubmit(event) {
-      var _this2 = this;
-
-      event.preventDefault();
-      var data = {
-        email: this.state.email,
-        password: this.state.pwd
-      };
-      Object(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_1__["baseUrl"], "/signin"), data).then(function (_ref) {
-        var status = _ref.status,
-            message = _ref.message;
-
-        if (status == 'success') {
-          _this2.setState({
-            showDashboard: true
-          });
-        } else {
-          toastr.error(message);
-        }
+  _createClass(AddChild, [{
+    key: "handleFileUpload",
+    value: function handleFileUpload(e) {
+      var target = e.target;
+      this.setState({
+        fileUpload: target.files[0]
       });
     }
   }, {
-    key: "handleChange",
-    value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    key: "handleInputChange",
+    value: function handleInputChange(e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+      this.setState(function (prevState, props) {
+        return _defineProperty({}, name, value);
+      });
     }
   }, {
-    key: "validate",
-    value: function validate(_ref2) {
-      var name = _ref2.name,
-          email = _ref2.email,
-          pwd = _ref2.pwd,
-          cpwd = _ref2.cpwd;
-      var errorCount = 0;
-      var errors = {
-        email: {
-          valid: true,
-          message: ''
-        },
-        pwd: {
-          valid: true,
-          message: ''
-        }
-      };
+    key: "handleSubmit",
+    value: function () {
+      var _handleSubmit = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+        var formData, _this$state, name, email, role, fileUpload, _ref2, status, message, _ref2$data, data;
 
-      if (email == '' || email.length == 0) {
-        errors.email = {
-          valid: false,
-          message: 'Email field is required'
-        };
-        errorCount += 1;
-      } else {
-        errors.email = {
-          valid: true,
-          message: ''
-        };
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                formData = new FormData();
+                _this$state = this.state, name = _this$state.name, email = _this$state.email, role = _this$state.role, fileUpload = _this$state.fileUpload;
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('role', role);
+                formData.append('avatar', fileUpload);
+                _context.next = 9;
+                return Object(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["axiosPost"])("".concat(_axiosCall__WEBPACK_IMPORTED_MODULE_2__["baseUrl"], "/users/children"), formData, {
+                  'content-type': 'multipart/form-data'
+                });
+
+              case 9:
+                _ref2 = _context.sent;
+                status = _ref2.status;
+                message = _ref2.message;
+                _ref2$data = _ref2.data;
+                data = _ref2$data === void 0 ? '' : _ref2$data;
+
+                if (status === 'success') {
+                  toastr.success(message);
+                  this.setState({
+                    isAdded: true
+                  });
+                } else {
+                  toastr.error(message);
+                }
+
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
       }
 
-      if (pwd == '' || pwd.length == 0) {
-        errors.pwd = {
-          valid: false,
-          message: 'Password field is required'
-        };
-        errorCount += 1;
-      } else {
-        errors.pwd = {
-          valid: true,
-          message: ''
-        };
-      }
-
-      return {
-        errors: errors,
-        errorCount: errorCount
-      };
-    }
+      return handleSubmit;
+    }()
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
-      if (this.state.showDashboard) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+      var _this$state2 = this.state,
+          name = _this$state2.name,
+          role = _this$state2.role,
+          email = _this$state2.email,
+          isAdded = _this$state2.isAdded;
+      if (isAdded) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Redirect"], {
         to: "/dashboard"
       });
-
-      var _this$validate = this.validate(this.state),
-          errors = _this$validate.errors,
-          errorCount = _this$validate.errorCount;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "mt-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Signin form"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Add Child"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://www.w3schools.com/bootstrap4/cinqueterre.jpg",
+        loading: "lazy",
+        className: "img-thumbnail",
+        alt: "Cinque Terre",
+        width: "304",
+        height: "236"
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+        htmlFor: "avatar"
+      }, "Select avatar:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "file",
+        className: "form-control",
+        id: "avatar",
+        onChange: this.handleFileUpload
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+        htmlFor: "userName"
+      }, "Name:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        id: "userName",
+        name: "name",
+        value: name,
+        onChange: this.handleInputChange
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "email",
+      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "text",
         className: "form-control",
         id: "email",
+        value: email,
         name: "email",
-        value: this.state.email,
-        onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "text-danger errors.email.valid && 'd-none'"
-      }, errors.email.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.handleInputChange
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "pwd"
-      }, "Password:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+        htmlFor: "role"
+      }, "Role:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "text",
         className: "form-control",
-        id: "pwd",
-        name: "pwd",
-        value: this.state.pwd,
-        onChange: this.handleChange
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "text-danger errors.pwd.valid && 'd-none'"
-      }, errors.pwd.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "role",
+        value: role,
+        readOnly: true
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/signup"
-      }, "Not have an account? Register now")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "btn btn-primary",
-        disabled: errorCount > 0
-      }, "Login")));
+        type: "submit"
+      }, "Add"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/dashboard",
+        className: "btn btn-primary ml-3"
+      }, "Back to Dashboard"))));
     }
   }]);
 
-  return Signin;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+  return AddChild;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 
 

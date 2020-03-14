@@ -36,7 +36,7 @@ export default class AddChild extends Component {
 		});
 	}
 
-	handleSubmit(e) {
+	async handleSubmit(e) {
 		e.preventDefault();
 		let formData = new FormData();
 		const {name, email, role, fileUpload} = this.state;
@@ -45,18 +45,15 @@ export default class AddChild extends Component {
 		formData.append('role', role);
 		formData.append('avatar', fileUpload);
 
-		axiosPost(`${baseUrl}/users/children`, formData, {
+		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/children`, formData, {
 			'content-type': 'multipart/form-data'
-		})
-		.then(({status, message, data = ''}) => {			
-			if(status === 'success'){
-				toastr.success(message);
-				this.setState({isAdded:true});
-			}else{
-				toastr.error(message);
-			}
-		 });
-		
+		});
+		if(status === 'success'){
+			toastr.success(message);
+			this.setState({isAdded:true});
+		}else{
+			toastr.error(message);
+		}		
 	}
 
 

@@ -27,15 +27,20 @@ export default class AuthUserLayout extends Component {
 		this.logoutHandler = this.logoutHandler.bind(this);
     }
     
-    logoutHandler() {
-		axiosGet(`${baseUrl}/logout`)
-		.then(({status, message, data = ''}) => {			
+    async logoutHandler() {
+		const {status, message, data = ''} = await axiosGet(`${baseUrl}/logout`);
+		if(status == 'success'){
+			this.setState({ isLoggedOut: true});
+		}else{
+			toastr.error(message);
+		}
+/* 		.then(({status, message, data = ''}) => {			
 			if(status == 'success'){
 				this.setState({ isLoggedOut: true});
 			}else{
 				toastr.error(message);
 			}
-		 });
+		 }); */
     }
 
     async getProfile(id = null) {

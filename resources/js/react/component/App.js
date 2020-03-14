@@ -22,7 +22,7 @@ const AddChild = React.lazy(() => import('./AddChild'));
 export default function App() {
 	return (
 			<Switch>
-        <React.Suspense fallback={<div><h1>Loading....</h1></div>}>
+        <React.Suspense fallback={<div><h1>Suspense Loading....</h1></div>}>
           <Route exact path="/signin">
             <GuestUserLayout page={<Signin/>} title='I am on in page'/>
           </Route>

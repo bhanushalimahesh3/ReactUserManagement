@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from './../axiosCall';
 import {
-	Switch,
-	Route,
 	Link,
-	Redirect,
-	useRouteMatch,
-	useParams
+	Redirect
   } from "react-router-dom";
 
 import './../../../../node_modules/toastr/build/toastr.css';
 import AuthHandler from './AuthHandler';
 import Swal from 'sweetalert2';
-import Header from './Header';
 
 export default class Dashboard extends Component {
 
@@ -21,69 +16,50 @@ export default class Dashboard extends Component {
 		this.state = {
 			users : [],
 			usersLoaded : false,
-			//isLoggedOut : false,
 			noData : false
 		}
 
 		this.getUserList = this.getUserList.bind(this);
-		//this.logoutHandler = this.logoutHandler.bind(this);
 		this.deleteHandler = this.deleteHandler.bind(this);
 	}
 
-	getUserList() {
+	async getUserList() {
 
-		axiosGet(`${baseUrl}/users`)
-		.then(({status, message, data, statusCode}) => {
-			const isGuest = AuthHandler(statusCode);
-			if(isGuest)
-				this.setState({ isLoggedOut: true});
-					
-			if(status === 'success'){
-				this.setState({ users: data, usersLoaded: true, noData: false});
-			}else{
-				this.setState({ users: data, usersLoaded: true, noData: true});
-				toastr.error(message);
-			}
-		 });
+		const {status, message, data, statusCode} = await axiosGet(`${baseUrl}/users`);
+		const isGuest = AuthHandler(statusCode);
+		if(isGuest)
+			this.setState({ isLoggedOut: true});
+				
+		if(status === 'success'){
+			this.setState({ users: data, usersLoaded: true, noData: false});
+		}else{
+			this.setState({ users: data, usersLoaded: true, noData: true});
+			toastr.error(message);
+		}
+
 	}
 
-	/*logoutHandler() {
-		axiosGet(`${baseUrl}/logout`)
-		.then(({status, message, data = ''}) => {			
-			if(status == 'success'){
-				this.setState({ isLoggedOut: true});
-			}else{
-				toastr.error(message);
+	async deleteHandler(id='') {
+
+		const {value:confirmation} = await Swal.fire({
+				title: 'Are you sure?',
+				text: 'You want to delete',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Yes, delete it!',
+				cancelButtonText: 'No, keep it'
+			});
+		if(confirmation){
+			const {status, message, data, statusCode} = await axiosDelete(`${baseUrl}/users/${id}`);
+			const isGuest = AuthHandler(statusCode);
+			if(isGuest)
+				this.props.updateLogout();
+					
+			if(status === 'success'){
+				this.getUserList();
 			}
-		 });
-	}*/
-
-	deleteHandler(id='') {
-
-		Swal.fire({
-			title: 'Are you sure?',
-			text: 'You want to delete',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonText: 'No, keep it'
-		  }).then((result) => {
-			  if(result.value){
-				axiosDelete(`${baseUrl}/users/${id}`)
-				.then(({status, message, data, statusCode}) => {
-					const isGuest = AuthHandler(statusCode);
-					if(isGuest)
-						this.props.updateLogout();
-						//this.setState({ isLoggedOut: true});
-							
-					if(status === 'success'){
-						this.getUserList();
-					}
-					toastr.error(message);
-				 });
-			  }
-		  })
-
+			toastr.error(message);
+		}
 	}
 
 	componentDidMount() {
@@ -92,12 +68,8 @@ export default class Dashboard extends Component {
 
 
 	render() {
-/*		if(this.state.isLoggedOut)
-			return <Redirect to="/" />*/
-
 		return (
 			<div>
-				{/* <Header logoutHandler = {this.logoutHandler}/> */}
 				<TableContainer users = {this.state.users} 
 								loaded = {this.state.usersLoaded} 
 								noData = {this.state.noData} 
