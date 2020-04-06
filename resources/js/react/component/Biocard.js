@@ -1,9 +1,12 @@
-import React from 'react';
-  
+import React, {useContext} from 'react';
+import {UserContext} from './../context/UserContext.js';  
 
 export default function Biocard(props)
 {
-    const {userInfo : {name, email, role, id}} = props;
+ 
+
+   // const {userInfo : {name, email, role, id}} = props;
+      const {userInfo : {name, email, role, id}} = useContext(UserContext)
     return (
             <div className="row">
                 <div className="col-12">

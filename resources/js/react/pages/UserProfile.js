@@ -18,7 +18,8 @@ export default class UserProfile extends Component {
 				id:loadingMsg,
 				file:null
 			},
-			fileUpload : null
+			fileUpload : null,
+			myProfile : false
 		}
 
 		this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -38,17 +39,6 @@ export default class UserProfile extends Component {
 		}else{
 			toastr.error(message);
 		}
-
-/* 		.then(({status, message, data = ''}) => {			
-			if(status == 'success'){
-				const {user:{name, email, role, id}} = data;
-				this.setState((prevState, props) => {
-					return ({profile :  {...prevState.profile, name, email, role, id}})
-				});
-			}else{
-				toastr.error(message);
-			}
-		 }); */
 	}
 
 	handleFileUpload(e) {
@@ -83,15 +73,6 @@ export default class UserProfile extends Component {
 		}else{
 			toastr.error(message);
 		}
-
-/* 		.then(({status, message, data = ''}) => {			
-			if(status === 'success'){
-				toastr.success(message);
-				this.getProfile(id);
-			}else{
-				toastr.error(message);
-			}
-		 }); */
 		
 	}
 

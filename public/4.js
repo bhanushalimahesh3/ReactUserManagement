@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./resources/js/react/component/AddChild.js":
-/*!**************************************************!*\
-  !*** ./resources/js/react/component/AddChild.js ***!
-  \**************************************************/
+/***/ "./resources/js/react/pages/AddChild.js":
+/*!**********************************************!*\
+  !*** ./resources/js/react/pages/AddChild.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -233,4 +233,3 @@ function (_Component) {
 /***/ })
 
 }]);
-//# sourceMappingURL=4.js.map

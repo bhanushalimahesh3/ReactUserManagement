@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from './../axiosCall';
+import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from '../axiosCall';
 import {
 	Link,
 	Redirect
   } from "react-router-dom";
 
 import './../../../../node_modules/toastr/build/toastr.css';
-import {validateSignin} from './Validation.js';
+import {validateSignin} from '../component/Validation.js';
 
 export default class Signin extends Component {
 
@@ -16,11 +16,14 @@ export default class Signin extends Component {
 		this.state = {
 			email: '',
 			pwd: '',
-			showDashboard: false
+			showDashboard: false,
+			errors : {},
+			errorCount : 0
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleFocus = this.handleFocus.bind(this);
 	}
 
 	async handleSubmit(event) {
@@ -34,70 +37,25 @@ export default class Signin extends Component {
 		}else{
 			toastr.error(message);
 		}
-/* 		.then(({status, message}) => {
-			if(status == 'success'){
-				this.setState({showDashboard : true});
-			}else{
-				toastr.error(message);
-			}	
-		});   */  
+ 
+	}
+
+	handleFocus(event) {
+		const {errors, errorCount} = validateSignin(this.state);
+		this.setState({errors, errorCount});
 	}
 
 	handleChange(event) {
+		
 		this.setState({[event.target.name] : event.target.value});
 	}
-
-
-/* 	validate({name, email, pwd, cpwd}) {
-		let errorCount = 0;
-		const errors  =  {
-							email: {
-								valid: true,
-								message: ''
-							},
-							pwd: {
-								valid: true,
-								message: ''
-							}
-						};
-
-
-		if(email == '' || email.length == 0){
-			errors.email = {
-				valid:false,
-				message:'Email field is required'
-			};
-			errorCount += 1;
-
-		}else{
-			errors.email = {
-				valid:true,
-				message:''
-			};
-		}
-
-		if(pwd == '' || pwd.length == 0){
-			errors.pwd = {
-				valid:false,
-				message:'Password field is required'
-			};
-			errorCount += 1;
-		}else{
-			errors.pwd = {
-				valid:true,
-				message:''
-			};
-		}
-
-		return {errors, errorCount};
-	} */
 
 	render() {
 		
 		if(this.state.showDashboard)
 		return <Redirect to='/dashboard' />
 
-		const {errors, errorCount} = validateSignin(this.state);
+		const {errors, errorCount} = this.state;
 		return (
 			<div className="mt-5">
 				<h2>Signin form</h2>
@@ -109,8 +67,9 @@ export default class Signin extends Component {
 			      			 id="email" 
 			      			 name="email" 
 			      			 value={this.state.email} 
-			      			 onChange={this.handleChange}/>
-			      	 <p className="text-danger errors.email.valid && 'd-none'">{errors.email.message}</p>
+			      			 onChange={this.handleChange}
+							 onBlur={this.handleFocus}/>
+			      	 { (errorCount > 0) && <p className="text-danger errors.email.valid && 'd-none'">{errors.email.message}</p> }
 				    </div>
 				    <div className="form-group">
 				      <label htmlFor="pwd">Password:</label>
@@ -119,8 +78,9 @@ export default class Signin extends Component {
 				      		 id="pwd" 
 				      		 name="pwd" 
 				      		 value={this.state.pwd} 
-				      		 onChange={this.handleChange}/>
-				      <p className="text-danger errors.pwd.valid && 'd-none'">{errors.pwd.message}</p>		 
+				      		 onChange={this.handleChange}
+							 onBlur={this.handleFocus}/>
+				      { (errorCount > 0) && <p className="text-danger errors.pwd.valid && 'd-none'">{errors.pwd.message}</p> }		 
 				    </div>
 					<div className="form-group">
 				      <Link to="/signup">Not have an account? Register now</Link>

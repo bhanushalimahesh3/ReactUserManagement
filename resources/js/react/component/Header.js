@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Biocard from './Biocard'; 
-import ActionButton from './ActionButton';  
+import Biocard from './Biocard.js'; 
+import ActionButton from './ActionButton.js';  
 
 export default function Header(props)
 {
-    
+  
     return (
         <div className="mt-5">
-            <Biocard userInfo = {props.userInfo} />
-            <ActionButton {...props} userInfo = {props.userInfo} />
+            <Biocard />
+            <ActionButton />
         </div>
     );
 }

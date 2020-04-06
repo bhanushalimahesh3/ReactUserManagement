@@ -16,10 +16,10 @@ function AuthHandler(statusCode) {
 
 /***/ }),
 
-/***/ "./resources/js/react/component/Dashboard.js":
-/*!***************************************************!*\
-  !*** ./resources/js/react/component/Dashboard.js ***!
-  \***************************************************/
+/***/ "./resources/js/react/pages/Dashboard.js":
+/*!***********************************************!*\
+  !*** ./resources/js/react/pages/Dashboard.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -30,11 +30,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../axiosCall */ "./resources/js/react/axiosCall.js");
+/* harmony import */ var _axiosCall__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../axiosCall */ "./resources/js/react/axiosCall.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../node_modules/toastr/build/toastr.css */ "./node_modules/toastr/build/toastr.css");
 /* harmony import */ var _node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_toastr_build_toastr_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _AuthHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AuthHandler */ "./resources/js/react/component/AuthHandler.js");
+/* harmony import */ var _component_AuthHandler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../component/AuthHandler */ "./resources/js/react/component/AuthHandler.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
 
@@ -110,7 +110,7 @@ function (_Component) {
                 message = _ref.message;
                 data = _ref.data;
                 statusCode = _ref.statusCode;
-                isGuest = Object(_AuthHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(statusCode);
+                isGuest = Object(_component_AuthHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(statusCode);
                 if (isGuest) this.setState({
                   isLoggedOut: true
                 });
@@ -194,7 +194,7 @@ function (_Component) {
                 message = _ref3.message;
                 data = _ref3.data;
                 statusCode = _ref3.statusCode;
-                isGuest = Object(_AuthHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(statusCode);
+                isGuest = Object(_component_AuthHandler__WEBPACK_IMPORTED_MODULE_5__["default"])(statusCode);
                 if (isGuest) this.props.updateLogout();
 
                 if (status === 'success') {
@@ -287,4 +287,3 @@ function TableRow(props) {
 /***/ })
 
 }]);
-//# sourceMappingURL=1.js.map

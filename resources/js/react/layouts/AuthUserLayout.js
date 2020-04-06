@@ -10,6 +10,8 @@ import {
 	useParams
   } from "react-router-dom";
 
+  import {UserContextProvider} from './../context/UserContext';
+
 export default class AuthUserLayout extends Component {
 
     constructor(props) {
@@ -34,18 +36,11 @@ export default class AuthUserLayout extends Component {
 		}else{
 			toastr.error(message);
 		}
-/* 		.then(({status, message, data = ''}) => {			
-			if(status == 'success'){
-				this.setState({ isLoggedOut: true});
-			}else{
-				toastr.error(message);
-			}
-		 }); */
     }
 
-    async getProfile(id = null) {
+    async getProfile() {
 		
-		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile${(id) ? `/${id}` : ''}`);
+		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile`);
 
 		if(status === 'success'){
 			const {user:{name, email, role, id}} = data;
@@ -55,17 +50,6 @@ export default class AuthUserLayout extends Component {
 		}else{
 			toastr.error(message);
 		}
-
-/* 		.then(({status, message, data = ''}) => {			
-			if(status == 'success'){
-				const {user:{name, email, role, id}} = data;
-				this.setState((prevState, props) => {
-					return ({profile :  {...prevState.profile, name, email, role, id}})
-				});
-			}else{
-				toastr.error(message);
-			}
-		 }); */
 	}
 
     updateLogout(){
@@ -86,10 +70,15 @@ export default class AuthUserLayout extends Component {
 
         return (
             <div>
-                <h1>Auth Layout</h1>
-                <h2>{title}</h2>
-                <Header logoutHandler = {this.logoutHandler} userInfo={this.state.profile} />
-                <Page match = {match} location = {location} history={history} updateLogout = {this.updateLogout} userInfo={this.state.profile}/>
+				
+					<h1>Auth Layout</h1>
+					<h2>{title}</h2>
+					<UserContextProvider value={{userInfo:this.state.profile, logoutHandler:this.logoutHandler}}>
+						<Header />
+					</UserContextProvider>
+
+					<Page match = {match} location = {location} history={history} updateLogout = {this.updateLogout} userInfo={this.state.profile}/>
+				
             </div>
         );
     }

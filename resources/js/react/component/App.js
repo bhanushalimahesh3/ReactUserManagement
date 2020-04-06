@@ -3,19 +3,14 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-/* import Signup from './Signup';
-import Signin from './Signin' ;
-import Dashboard from './Dashboard';
-import UserProfile from './UserProfile';
-import AddChild from './AddChild'; */
 import GuestUserLayout from './../layouts/GuestUserLayout';
 import AuthUserLayout from './../layouts/AuthUserLayout';
 
-const Signin = React.lazy(() => import('./Signin'));
-const Signup = React.lazy(() => import('./Signup'));
-const Dashboard = React.lazy(() => import('./Dashboard'));
-const UserProfile = React.lazy(() => import('./UserProfile'));
-const AddChild = React.lazy(() => import('./AddChild'));
+const Signin = React.lazy(() => import('./../pages/Signin'));
+const Signup = React.lazy(() => import('./../pages/Signup'));
+const Dashboard = React.lazy(() => import('./../pages/Dashboard'));
+const UserProfile = React.lazy(() => import('./../pages/UserProfile'));
+const AddChild = React.lazy(() => import('./../pages/AddChild'));
 
 
 

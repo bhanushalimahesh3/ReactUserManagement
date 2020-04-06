@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from './../axiosCall';
+import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from '../axiosCall';
 import {
 	Link,
 	Redirect
   } from "react-router-dom";
 
 import './../../../../node_modules/toastr/build/toastr.css';
-import AuthHandler from './AuthHandler';
+import AuthHandler from '../component/AuthHandler';
 import Swal from 'sweetalert2';
 
 export default class Dashboard extends Component {

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./resources/js/react/component/UserProfile.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/react/component/UserProfile.js ***!
-  \*****************************************************/
+/***/ "./resources/js/react/pages/UserProfile.js":
+/*!*************************************************!*\
+  !*** ./resources/js/react/pages/UserProfile.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73,7 +73,8 @@ function (_Component) {
         id: loadingMsg,
         file: null
       },
-      fileUpload: null
+      fileUpload: null,
+      myProfile: false
     };
     _this.handleFileUpload = _this.handleFileUpload.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
@@ -130,17 +131,6 @@ function (_Component) {
                 } else {
                   toastr.error(message);
                 }
-                /* 		.then(({status, message, data = ''}) => {			
-                			if(status == 'success'){
-                				const {user:{name, email, role, id}} = data;
-                				this.setState((prevState, props) => {
-                					return ({profile :  {...prevState.profile, name, email, role, id}})
-                				});
-                			}else{
-                				toastr.error(message);
-                			}
-                		 }); */
-
 
               case 9:
               case "end":
@@ -215,15 +205,6 @@ function (_Component) {
                 } else {
                   toastr.error(message);
                 }
-                /* 		.then(({status, message, data = ''}) => {			
-                			if(status === 'success'){
-                				toastr.success(message);
-                				this.getProfile(id);
-                			}else{
-                				toastr.error(message);
-                			}
-                		 }); */
-
 
               case 17:
               case "end":
@@ -321,4 +302,3 @@ function (_Component) {
 /***/ })
 
 }]);
-//# sourceMappingURL=5.js.map

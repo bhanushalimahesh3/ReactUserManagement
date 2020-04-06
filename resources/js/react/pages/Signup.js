@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from './../axiosCall';
+import {axiosPost, axiosPut, axiosGet, axiosDelete, baseUrl} from '../axiosCall';
 import {
 	Link,
 	Redirect
   } from "react-router-dom";
 import './../../../../node_modules/toastr/build/toastr.css';
-import {validateSignup} from './Validation.js';
+import {validateSignup} from '../component/Validation.js';
   
 
 export default class Signup extends Component {
@@ -38,100 +38,12 @@ export default class Signup extends Component {
 		}else{
 			toastr.error(message);
 		}
-
-/* 		.then(({status, message}) => {
-			if(status == 'success'){
-				toastr.success(message);
-				this.setState({showSignIn : true});
-				//console.log(this.state);
-			}else{
-				toastr.error(message);
-			}
-
-		});  */   
+ 
 	}
 
 	handleChange(event) {
 		this.setState({[event.target.name] : event.target.value});
 	}
-
-
-/* 	validate({name, email, pwd, cpwd}) {
-		let errorCount = 0;
-		const errors  =  {
-							name: {
-								valid: true,
-								message: ''
-							},
-							email: {
-								valid: true,
-								message: ''
-							},
-							pwd: {
-								valid: true,
-								message: ''
-							},
-							cpwd: {
-								valid: true,
-								message: ''
-							}
-						};
-
-		if(name == '' || name.length == 0){
-			errors.name = {
-				valid:false,
-				message:'Name field is required'
-			};
-			errorCount += 1;
-		}else{
-			errors.name = {
-				valid:true,
-				message:''
-			};
-		}
-
-		if(email == '' || email.length == 0){
-			errors.email = {
-				valid:false,
-				message:'Email field is required'
-			};
-			errorCount += 1;
-
-		}else{
-			errors.email = {
-				valid:true,
-				message:''
-			};
-		}
-
-		if(pwd == '' || pwd.length == 0){
-			errors.pwd = {
-				valid:false,
-				message:'Password field is required'
-			};
-			errorCount += 1;
-		}else{
-			errors.pwd = {
-				valid:true,
-				message:''
-			};
-		}
-
-		if(cpwd == '' || cpwd.length == 0 || pwd != cpwd){
-			errors.cpwd = {
-				valid:false,
-				message:'Confirm password field is required. Password & Confirm password mismatch'
-			};
-			errorCount += 1;
-		}else{
-			errors.cpwd = {
-				valid:true,
-				message:''
-			};
-		}
-
-		return {errors, errorCount};
-	} */
 
 	render() {
 		

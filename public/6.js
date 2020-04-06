@@ -3066,4 +3066,3 @@ if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAle
 /***/ })
 
 }]);
-//# sourceMappingURL=6.js.map
