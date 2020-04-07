@@ -6,7 +6,7 @@ import {
 import './../../../../node_modules/toastr/build/toastr.css';
 import BasicInfo from './../component/BasicInfo.js';
 
-export default class UserProfile extends Component {
+export default class MyProfile extends Component {
 
 	constructor(props) {
 		super(props);
@@ -29,9 +29,9 @@ export default class UserProfile extends Component {
 		
 	}
 
-	async getProfile(id = null) {
+	async getProfile() {
 		
-		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile/${id}`);
+		const {status, message, data = ''} = await axiosPost(`${baseUrl}/users/profile`);
 		if(status == 'success'){
 			const {user:{name, email, role, id}} = data;
 			this.setState((prevState, props) => {
@@ -78,10 +78,8 @@ export default class UserProfile extends Component {
 	}
 
 
-	componentDidMount() {
-		
-		const id = this.props.match.params.userId;
-	    this.getProfile(id);
+	componentDidMount() {		
+	    this.getProfile();
 	  }
 
 

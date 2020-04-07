@@ -10,6 +10,7 @@ const Signin = React.lazy(() => import('./../pages/Signin'));
 const Signup = React.lazy(() => import('./../pages/Signup'));
 const Dashboard = React.lazy(() => import('./../pages/Dashboard'));
 const UserProfile = React.lazy(() => import('./../pages/UserProfile'));
+const MyProfile = React.lazy(() => import('./../pages/MyProfile'));
 const AddChild = React.lazy(() => import('./../pages/AddChild'));
 
 
@@ -36,9 +37,16 @@ export default function App() {
           </Route>
 
           <Route  exact 
-                  path = "/users/profile/:userId?" 
-                  render = {(props) => <AuthUserLayout page={UserProfile} title='On profile' {...props} />} >            
+                  path = "/users/profile" 
+                  render = {(props) => <AuthUserLayout page={MyProfile} title='On my profile' {...props} />} >            
+          </Route>          
+
+          <Route  exact 
+                  path = "/users/profile/:userId" 
+                  render = {(props) => <AuthUserLayout page={UserProfile} title='On user profile' {...props} />} >            
           </Route>
+
+
 
           <Route exact 
                 path = "/users/children" 
