@@ -10,7 +10,9 @@ import {
 	useParams
   } from "react-router-dom";
 
-  import {UserContextProvider} from './../context/UserContext';
+import {UserContextProvider} from './../context/UserContext';
+import {recognition, colors } from './../helpers/SpeechToText.js';
+
 
 export default class AuthUserLayout extends Component {
 
@@ -27,6 +29,7 @@ export default class AuthUserLayout extends Component {
 			}
         }
 		this.logoutHandler = this.logoutHandler.bind(this);
+		this.micClickHandler = this.micClickHandler.bind(this);
     }
     
     async logoutHandler() {
@@ -54,15 +57,21 @@ export default class AuthUserLayout extends Component {
 
     updateLogout(){
         this.setState({ isLoggedOut: true});
-    }
+	}
+	
+	micClickHandler(e) {
+		recognition.start();
+		console.log('Ready to receive a color command.');
+	}
 
     componentDidMount() {
-		const id = (this.props.match.params.userId) ? `${this.props.match.params.userId}` : '';
-		this.getProfile(id);
+
+		this.getProfile();
 		
 	  }
     
     render() {
+
         if(this.state.isLoggedOut)
             return <Redirect to="/" />
 
@@ -73,7 +82,11 @@ export default class AuthUserLayout extends Component {
 				
 					<h1>Auth Layout</h1>
 					<h2>{title}</h2>
-					<UserContextProvider value={{userInfo:this.state.profile, logoutHandler:this.logoutHandler}}>
+					<UserContextProvider value={{userInfo:this.state.profile, 
+												logoutHandler:this.logoutHandler, 
+												micClickHandler:this.micClickHandler,
+												colors
+												}}>
 						<Header />
 					</UserContextProvider>
 
