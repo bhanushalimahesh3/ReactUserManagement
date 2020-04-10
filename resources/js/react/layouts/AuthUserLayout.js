@@ -26,7 +26,8 @@ export default class AuthUserLayout extends Component {
 				role:'',
 				id:'',
 				file:''
-			}
+			},
+			appColor:'...'
         }
 		this.logoutHandler = this.logoutHandler.bind(this);
 		this.micClickHandler = this.micClickHandler.bind(this);
@@ -62,6 +63,23 @@ export default class AuthUserLayout extends Component {
 	micClickHandler(e) {
 		recognition.start();
 		console.log('Ready to receive a color command.');
+		recognition.onresult = (event) => {
+			// The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+			// The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+			// It has a getter so it can be accessed like an array
+			// The first [0] returns the SpeechRecognitionResult at the last position.
+			// Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+			// These also have getters so they can be accessed like arrays.
+			// The second [0] returns the SpeechRecognitionAlternative at position 0.
+			// We then return the transcript property of the SpeechRecognitionAlternative object
+			var color = event.results[0][0].transcript;
+		   
+			console.log(`color ${color}`);
+			console.log(event);
+			console.log('Confidence: ' + event.results[0][0].confidence);
+			this.setState({appColor:color});
+		  }
+		  
 	}
 
     componentDidMount() {
@@ -78,10 +96,11 @@ export default class AuthUserLayout extends Component {
         const {page: Page, title, match, location, history} = this.props;
 
         return (
-            <div>
+            <div className="p-3" style={{backgroundColor:this.state.appColor}}>
 				
 					<h1>Auth Layout</h1>
 					<h2>{title}</h2>
+					<p>Did you spoke {this.state.appColor}</p>
 					<UserContextProvider value={{userInfo:this.state.profile, 
 												logoutHandler:this.logoutHandler, 
 												micClickHandler:this.micClickHandler,

@@ -57722,6 +57722,21 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
+recognition.onspeechend = function (event) {
+  console.log(event);
+  recognition.stop();
+  console.log('stop');
+};
+
+recognition.onnomatch = function (event) {
+  console.log("I didn't recognise that color.");
+};
+
+recognition.onerror = function (event) {
+  console.log('Error occurred in recognition: ' + event.error);
+};
+
+
 
 /***/ }),
 
@@ -57823,7 +57838,8 @@ function (_Component) {
         role: '',
         id: '',
         file: ''
-      }
+      },
+      appColor: '...'
     };
     _this.logoutHandler = _this.logoutHandler.bind(_assertThisInitialized(_this));
     _this.micClickHandler = _this.micClickHandler.bind(_assertThisInitialized(_this));
@@ -57936,8 +57952,29 @@ function (_Component) {
   }, {
     key: "micClickHandler",
     value: function micClickHandler(e) {
+      var _this2 = this;
+
       _helpers_SpeechToText_js__WEBPACK_IMPORTED_MODULE_6__["recognition"].start();
       console.log('Ready to receive a color command.');
+
+      _helpers_SpeechToText_js__WEBPACK_IMPORTED_MODULE_6__["recognition"].onresult = function (event) {
+        // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+        // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+        // It has a getter so it can be accessed like an array
+        // The first [0] returns the SpeechRecognitionResult at the last position.
+        // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+        // These also have getters so they can be accessed like arrays.
+        // The second [0] returns the SpeechRecognitionAlternative at position 0.
+        // We then return the transcript property of the SpeechRecognitionAlternative object
+        var color = event.results[0][0].transcript;
+        console.log("color ".concat(color));
+        console.log(event);
+        console.log('Confidence: ' + event.results[0][0].confidence);
+
+        _this2.setState({
+          appColor: color
+        });
+      };
     }
   }, {
     key: "componentDidMount",
@@ -57956,7 +57993,12 @@ function (_Component) {
           match = _this$props.match,
           location = _this$props.location,
           history = _this$props.history;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Auth Layout"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_context_UserContext__WEBPACK_IMPORTED_MODULE_5__["UserContextProvider"], {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "p-3",
+        style: {
+          backgroundColor: this.state.appColor
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Auth Layout"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Did you spoke ", this.state.appColor), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_context_UserContext__WEBPACK_IMPORTED_MODULE_5__["UserContextProvider"], {
         value: {
           userInfo: this.state.profile,
           logoutHandler: this.logoutHandler,

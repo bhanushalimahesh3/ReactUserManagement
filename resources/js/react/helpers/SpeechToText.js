@@ -16,5 +16,21 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
+recognition.onspeechend = function(event) {
+    console.log(event);
+    recognition.stop();
+    console.log('stop');
+  }
+  
+  recognition.onnomatch = function(event) {
+    console.log("I didn't recognise that color.");
+  }
+  
+  recognition.onerror = function(event) {
+    console.log('Error occurred in recognition: ' + event.error);
+  }
+
+ 
+
 export {recognition, colors };
 
