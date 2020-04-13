@@ -57715,17 +57715,15 @@ var colors = ['aqua', 'red', 'yellow', 'bisque', 'black', 'blue', 'brown'];
 var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;';
 var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
-speechRecognitionList.addFromString(grammar, 1);
-recognition.grammars = speechRecognitionList;
+speechRecognitionList.addFromString(grammar, 1); //recognition.grammars = speechRecognitionList;
+
 recognition.continuous = false;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+recognition.maxAlternatives = 1; //recognition.serviceURI = 'https://google.com';
 
 recognition.onspeechend = function (event) {
-  console.log(event);
   recognition.stop();
-  console.log('stop');
 };
 
 recognition.onnomatch = function (event) {
@@ -57733,7 +57731,40 @@ recognition.onnomatch = function (event) {
 };
 
 recognition.onerror = function (event) {
+  alert('Allow mic permission');
   console.log('Error occurred in recognition: ' + event.error);
+};
+
+recognition.onaudiostart = function (event) {
+  console.log('in audio start'); // console.log(event);
+};
+
+recognition.onaudioend = function (event) {
+  console.log("on audio end "); // console.log(event);
+};
+
+recognition.onstart = function (event) {
+  console.log('on start'); //console.log(event);
+};
+
+recognition.onend = function (event) {
+  console.log('on end'); // console.log(event);
+};
+
+recognition.onsoundstart = function (event) {//console.log(event);
+  //console.log('sound start');
+};
+
+recognition.onsoundend = function (event) {//console.log(event);
+  //console.log('sound end');
+};
+
+recognition.onspeechstart = function (event) {// console.log(event);
+  //console.log('on speech start');
+};
+
+recognition.onspeechend = function (event) {//console.log(event);
+  //console.log('on speech end');
 };
 
 
@@ -57966,10 +57997,9 @@ function (_Component) {
         // These also have getters so they can be accessed like arrays.
         // The second [0] returns the SpeechRecognitionAlternative at position 0.
         // We then return the transcript property of the SpeechRecognitionAlternative object
-        var color = event.results[0][0].transcript;
-        console.log("color ".concat(color));
-        console.log(event);
-        console.log('Confidence: ' + event.results[0][0].confidence);
+        var color = event.results[0][0].transcript; //console.log(`color ${color}`);
+
+        console.log(event); //console.log('Confidence: ' + event.results[0][0].confidence);
 
         _this2.setState({
           appColor: color

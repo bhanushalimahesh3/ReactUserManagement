@@ -74,9 +74,9 @@ export default class AuthUserLayout extends Component {
 			// We then return the transcript property of the SpeechRecognitionAlternative object
 			var color = event.results[0][0].transcript;
 		   
-			console.log(`color ${color}`);
+			//console.log(`color ${color}`);
 			console.log(event);
-			console.log('Confidence: ' + event.results[0][0].confidence);
+			//console.log('Confidence: ' + event.results[0][0].confidence);
 			this.setState({appColor:color});
 		  }
 		  
